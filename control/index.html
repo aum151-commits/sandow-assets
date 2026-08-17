@@ -24,6 +24,10 @@
   .bar-fill { height:100%; border-radius:6px; transition:width .3s; }
   .bar-plan { position:absolute; top:-3px; width:2px; height:16px; background:#333; border-radius:1px; }
   .card-nums { display:flex; gap:16px; flex-wrap:wrap; font-size:13px; color:#555; margin-top:4px; }
+  .sub-row { display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
+  .chip { background:#f8f7f4; border:1px solid #eee; border-radius:8px; padding:8px 12px; text-align:center; flex:1; min-width:90px; }
+  .chip-val { display:block; font-weight:800; font-size:20px; }
+  .chip-label { display:block; font-size:11px; color:#777; margin-top:2px; }
   .mgr-row { display:flex; gap:10px; margin-top:12px; }
   .mgr { background:#f4f2ee; border-radius:6px; padding:6px 12px; font-size:13px; display:flex; gap:6px; }
   .mgr-name { color:#666; }
@@ -35,7 +39,7 @@
 <body>
 <div class="wrap">
 <h1>Контроль продаж — Сандов Фитнес</h1>
-<div class="updated">Обновлено 17.08.2026 20:08</div>
+<div class="updated">Обновлено 17.08.2026 21:30</div>
 
         <div class="revenue-banner">
           <div class="rev-label">Продажи (1С  вкладка «Монитор управляющего») — Август 2026</div>
@@ -47,22 +51,23 @@
         <div class="card">
           <div class="card-top">
             <div class="card-title">Продления</div>
-            <div class="card-pct" style="color:#c62828">0%</div>
+            <div class="card-pct" style="color:#c98a00">37%</div>
           </div>
           
     <div class="bar-wrap">
       <div class="bar-bg">
-        <div class="bar-fill" style="width:0%;background:#c62828"></div>
+        <div class="bar-fill" style="width:37%;background:#c98a00"></div>
         <div class="bar-plan" style="left:55%" title="план на сегодня: 33"></div>
       </div>
     </div>
           <div class="card-nums">
-            <span><b>0</b> сделано</span>
+            <span><b>22</b> сделано</span>
             <span>план на сегодня: <b>33</b></span>
             <span>цель месяца: 60</span>
           </div>
+          <div class="sub-row"><div class="chip"><span class="chip-val" style="color:#555">169</span><span class="chip-label">закрывается авг+сен</span></div><div class="chip"><span class="chip-val" style="color:#2e7d32">57</span><span class="chip-label">уже звонили</span></div><div class="chip"><span class="chip-val" style="color:#c62828">112</span><span class="chip-label">ещё НЕ звонили</span></div></div>
           <div class="mgr-row"><div class="mgr"><span class="mgr-name">Спиридонова</span><span class="mgr-val">0</span></div><div class="mgr"><span class="mgr-name">Тоганидзе</span><span class="mgr-val">0</span></div></div>
-          
+          <div class="note">22 реальных продления в августе. Список на обзвон — 169 клиентов (август+сентябрь, без рекуррентов и без стартового месяца), сверено с журналом АТС Билайна.</div>
         </div>
         <div class="card">
           <div class="card-top">
@@ -81,6 +86,7 @@
             <span>план на сегодня: <b>16</b></span>
             <span>цель месяца: 30</span>
           </div>
+          
           <div class="mgr-row"><div class="mgr"><span class="mgr-name">Спиридонова</span><span class="mgr-val">3</span></div><div class="mgr"><span class="mgr-name">Тоганидзе</span><span class="mgr-val">2</span></div></div>
           
         </div>
@@ -101,8 +107,9 @@
             <span>план на сегодня: <b>55</b></span>
             <span>цель месяца: 100</span>
           </div>
+          
           <div class="mgr-row"><div class="mgr"><span class="mgr-name">Спиридонова</span><span class="mgr-val">0</span></div><div class="mgr"><span class="mgr-name">Тоганидзе</span><span class="mgr-val">0</span></div></div>
-          <div class="note">⚠ Из монитора 1С: 27 новых клиентов всего минус 5, кто выбрал рекуррент (посчитаны в канале «Рекурренты»). Проверено частично — сверить с полным списком.</div>
+          <div class="note">Из монитора 1С: 27 новых клиентов всего минус 5, кто выбрал рекуррент (посчитаны в канале «Рекурренты»). Проверено частично — сверить с полным списком.</div>
         </div>
         <div class="card">
           <div class="card-top">
@@ -121,8 +128,9 @@
             <span>план на сегодня: <b>28</b></span>
             <span>цель месяца: 51</span>
           </div>
+          <div class="sub-row"><div class="chip"><span class="chip-val" style="color:#555">51</span><span class="chip-label">под риском всего</span></div><div class="chip"><span class="chip-val" style="color:#2e7d32">0</span><span class="chip-label">обзвонено</span></div><div class="chip"><span class="chip-val" style="color:#c62828">51</span><span class="chip-label">осталось</span></div></div>
           <div class="mgr-row"><div class="mgr"><span class="mgr-name">Спиридонова</span><span class="mgr-val">0</span></div><div class="mgr"><span class="mgr-name">Тоганидзе</span><span class="mgr-val">0</span></div></div>
-          
+          <div class="note">Только реально отвалившиеся (не прошла оплата / отменили сами) — действующих активных подписчиков не звоним, ОП на них не влияет.</div>
         </div>
 <div class="legend">
   Тёмная чёрточка на полосе — где мы должны быть сегодня при равномерном темпе. Цвет процента:
