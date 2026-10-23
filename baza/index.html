@@ -98,8 +98,8 @@
   @media (max-width:1040px){
     .hero-inner{min-height:100svh; align-items:flex-start; padding-top:clamp(84px,12vh,110px)}
     .hero-copy{max-width:100%}
-    .hero-veil{background:linear-gradient(180deg, rgba(240,234,222,.97) 0%, rgba(240,234,222,.9) 40%,
-      rgba(240,234,222,.35) 62%, rgba(240,234,222,0) 80%)}
+    .hero-veil{background:linear-gradient(180deg, rgba(240,234,222,.98) 0%, rgba(240,234,222,.96) 46%,
+      rgba(240,234,222,.7) 62%, rgba(240,234,222,.25) 78%, rgba(240,234,222,0) 92%)}
   }
 
   .eyebrow{font-family:var(--mono); font-size:13px; letter-spacing:.14em; text-transform:uppercase;
@@ -127,6 +127,7 @@
   .scene .still img{width:min(46%,540px); filter:drop-shadow(0 30px 50px rgba(60,40,20,.35));
     animation:statue-sway 7s ease-in-out infinite}
   @media (max-width:1040px){
+    .hero-facts{display:none}
     .scene .still{align-items:flex-end; justify-content:center; padding:0 0 6%}
     .scene .still img{width:min(86%,420px)}
   }
@@ -500,11 +501,10 @@
     </div>
 
     <div class="strip">
-      <figure class="wide" data-rv data-tilt><img src="img/zal-day.jpg" alt="Тренажёрный зал" loading="lazy"><figcaption>Зал 1100 м²</figcaption></figure>
-      <figure data-rv data-tilt><img src="img/gruzobloki.jpg" alt="Свободные веса" loading="lazy"><figcaption>Свободные веса</figcaption></figure>
-      <figure data-rv data-tilt><img src="img/rychazhnye.jpg" alt="Рычажные тренажёры" loading="lazy"><figcaption>Рычажные</figcaption></figure>
-      <figure data-rv data-tilt><img src="img/zal-vdol.jpg" alt="Кардио" loading="lazy"><figcaption>Кардио</figcaption></figure>
-      <figure data-rv data-tilt><img src="img/group-hall-wide.jpg" alt="Групповой зал" loading="lazy"><figcaption>Групповой</figcaption></figure>
+      <figure class="wide" data-rv data-tilt><img src="img/zal-day.jpg" alt="Тренажёрный зал" loading="lazy"><figcaption>Тренажёрный зал</figcaption></figure>
+      <figure data-rv data-tilt><img src="img/gruzobloki.jpg" alt="Свободные веса и грузоблоки" loading="lazy"><figcaption>Свободные веса</figcaption></figure>
+      <figure data-rv data-tilt><img src="img/rychazhnye.jpg" alt="Рычажные тренажёры" loading="lazy"><figcaption>Рычажные тренажёры</figcaption></figure>
+      <figure data-rv data-tilt><img src="img/razdevalka.jpg" alt="Раздевалка и душевые" loading="lazy"><figcaption>Раздевалки</figcaption></figure>
     </div>
   </div>
 </section>
@@ -842,7 +842,7 @@ if (box){
         const bb = new THREE.Box3().setFromObject(model);
         const size = new THREE.Vector3(); bb.getSize(size);
         const center = new THREE.Vector3(); bb.getCenter(center);
-        const k = (window.innerWidth <= 900 ? 2.45 : 3.5) / Math.max(size.y, 0.001);
+        const k = (window.innerWidth <= 900 ? 2.15 : 3.4) / Math.max(size.y, 0.001);
         model.scale.setScalar(k);
         model.position.sub(center.multiplyScalar(k));
         rig.add(model);
@@ -889,8 +889,8 @@ if (box){
         rig.rotation.y = -0.5 + t * 0.14 + mx * 0.18;
         rig.rotation.x = 0.02 + my * 0.04;
         const широко = window.innerWidth > 900;
-        rig.position.x = широко ? 1.6 : 0;
-        rig.position.y = (широко ? -0.05 : -1.0) + Math.sin(t * 0.5) * 0.03;
+        rig.position.x = широко ? 2.05 : 0;
+        rig.position.y = (широко ? -0.1 : -1.32) + Math.sin(t * 0.5) * 0.03;
       }
       bokeh.children.forEach((s, i) => {
         s.position.y = s.userData.base + Math.sin(t * s.userData.speed + s.userData.phase) * 0.12;
@@ -901,7 +901,7 @@ if (box){
       camera.position.x = mx * 0.45;
       camera.position.y = 0.3 + my * 0.3;
       camera.position.z = 6.2 - scr * 0.7;
-      camera.lookAt(широко ? 0.8 : 0, широко ? 0.02 : 0.62, 0);
+      camera.lookAt(широко ? 1.05 : 0, широко ? 0.02 : 0.74, 0);
 
       if (ready && window.__statueSize){
         const hh = window.__statueSize.h / 2, ww = window.__statueSize.w / 2;
