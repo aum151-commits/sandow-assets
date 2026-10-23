@@ -105,7 +105,11 @@
   .hero-note{max-width:44ch; margin:26px 0 0; color:var(--ink-soft); font-size:19px; line-height:1.65; font-weight:400}
   .hero-cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:32px}
 
-  .ledger{margin-top:34px; border-top:2px solid var(--ink); font-family:var(--mono); font-size:15.5px; max-width:600px;
+  .hero-facts{display:flex; flex-wrap:wrap; gap:8px 22px; margin-top:26px; padding-top:18px;
+    border-top:1px solid var(--hair); font-family:var(--mono); font-size:13px; letter-spacing:.04em;
+    text-transform:uppercase; color:var(--ink-soft)}
+  .hero-facts b{color:var(--gold); font-weight:700}
+  .ledger{margin-top:26px; border-top:2px solid var(--ink); font-family:var(--mono); font-size:15.5px; max-width:600px;
     padding:0 22px 18px; background:linear-gradient(180deg, rgba(255,253,247,.72), rgba(255,253,247,.28));
     box-shadow:0 30px 60px -46px rgba(11,9,6,.7), inset 0 1px 0 rgba(255,255,255,.7)}
   .ledger .row{display:flex; justify-content:space-between; gap:14px; padding:13px 0; border-bottom:1px solid var(--hair);
@@ -310,12 +314,20 @@
 <header class="hero" id="hero">
   <div class="hero-grid">
     <div>
-      <p class="eyebrow">Тренерам · Нижегородская</p>
-      <h1>Аренда зала — <em>минус 92%</em> от годовой цены</h1>
-      <p class="hero-note">Помесячно год аренды стоил бы 600 000 ₽. По программе — 50 000 ₽ за весь год. С персональных тренировок клуб не берёт ни процента: всё, что ты заработал, остаётся тебе.</p>
+      <p class="eyebrow">Программа для тренеров · Нижегородская</p>
+      <h1>Зал за 50 000 ₽ в год вместо 600 000 ₽. <em>С тренировок — ноль.</em></h1>
+      <p class="hero-note">Клуб не берёт с твоих персональных тренировок ни процента — всё, что ты заработал, остаётся тебе. Перезвоним, ответим на все вопросы и подберём формат: покупать ничего не нужно.</p>
       <div class="hero-cta">
         <a class="pill gold" href="#zayavka">Оставить заявку</a>
         <a class="pill" href="tel:+74957956957">+7 (495) 795-69-57</a>
+      </div>
+      <div class="hero-facts">
+        <span><b>1100 м²</b> зал</span>
+        <span><b>24/7</b> доступ</span>
+        <span><b>Eleiko</b> два грифа</span>
+        <span><b>два помоста</b></span>
+        <span><b>сауна</b></span>
+        <span><b>парковка</b></span>
       </div>
 
       <div class="ledger">
@@ -694,6 +706,7 @@
    огнями на разных расстояниях, без геометрических конструкций. */
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 const box = document.getElementById('scene');
 if (box){
@@ -712,40 +725,20 @@ if (box){
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, small ? 1.6 : 2));
     renderer.setSize(W(), H());
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.3;
+    renderer.toneMappingExposure = 1.15;
 
     const scene = new THREE.Scene();
     scene.fog = new THREE.Fog(PAPER, 4.2, 15);
 
-    const camera = new THREE.PerspectiveCamera(36, W()/H(), 0.1, 60);
-    camera.position.set(0, 0.12, 6.05);
+    const camera = new THREE.PerspectiveCamera(42, W()/H(), 0.1, 100);
+    camera.position.set(0, 0.3, 6.2);
     camera.lookAt(0, -0.05, 0);
 
-    /* карта отражений рисуется тут же, на холсте: золото блестит без
-       загрузки лишних файлов и без долгой подготовки */
-    scene.environment = (() => {
-      const c = document.createElement('canvas'); c.width = 512; c.height = 256;
-      const g = c.getContext('2d');
-      const grad = g.createLinearGradient(0, 0, 0, 256);
-      grad.addColorStop(0, '#fffaf0');
-      grad.addColorStop(.45, '#e3cda6');
-      grad.addColorStop(.75, '#a98455');
-      grad.addColorStop(1, '#6b5336');
-      g.fillStyle = grad; g.fillRect(0, 0, 512, 256);
-      g.fillStyle = 'rgba(255,255,255,.95)';
-      g.beginPath(); g.ellipse(120, 62, 96, 34, 0, 0, 6.3); g.fill();
-      g.fillStyle = 'rgba(255,232,186,.85)';
-      g.beginPath(); g.ellipse(368, 104, 130, 46, 0, 0, 6.3); g.fill();
-      g.fillStyle = 'rgba(90,66,38,.55)';
-      g.beginPath(); g.ellipse(250, 226, 200, 40, 0, 0, 6.3); g.fill();
-      const t = new THREE.CanvasTexture(c);
-      t.mapping = THREE.EquirectangularReflectionMapping;
-      t.colorSpace = THREE.SRGBColorSpace;
-      return t;
-    })();
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
 
-    const bronze = new THREE.MeshStandardMaterial({color: 0xF0B96A, metalness: 1, roughness: 0.15, envMapIntensity: 2.6});
-    const bronzeDark = new THREE.MeshStandardMaterial({color: 0xC08A46, metalness: 1, roughness: 0.3, envMapIntensity: 1.8});
+    const bronze = new THREE.MeshStandardMaterial({color: 0xC08B4E, metalness: 1, roughness: 0.26, envMapIntensity: 1.6});
+    const bronzeDark = new THREE.MeshStandardMaterial({color: 0x8A5A2C, metalness: 1, roughness: 0.45, envMapIntensity: 1.2});
 
     /* мягкий круг для дымки и огней */
     function softCircle(inner, mid){
@@ -801,7 +794,7 @@ if (box){
         const bb = new THREE.Box3().setFromObject(model);
         const size = new THREE.Vector3(); bb.getSize(size);
         const center = new THREE.Vector3(); bb.getCenter(center);
-        const k = 3.75 / Math.max(size.y, 0.001);
+        const k = 3.5 / Math.max(size.y, 0.001);
         model.scale.setScalar(k);
         model.position.sub(center.multiplyScalar(k));
         rig.add(model);
@@ -815,12 +808,14 @@ if (box){
     if ('requestIdleCallback' in window) requestIdleCallback(загрузитьМодель, {timeout: 1800});
     else setTimeout(загрузитьМодель, 900);
 
-    const key = new THREE.SpotLight(0xfff6e8, 135, 40, Math.PI/5, 0.5, 1.1); key.position.set(3.2, 6, 6); scene.add(key);
-    const rim = new THREE.PointLight(0xffa94f, 55, 34); rim.position.set(-4, 1.6, -1.5); scene.add(rim);
-    const warm = new THREE.PointLight(0xffd9a0, 34, 30); warm.position.set(-2.2, 2.4, 4); scene.add(warm);
-    scene.add(new THREE.AmbientLight(0x8d7a5f, 1.6));
+    const key = new THREE.SpotLight(0xfff0d8, 70, 50, Math.PI/5, 0.5, 1.2); key.position.set(4, 8, 6); scene.add(key);
+    const rim = new THREE.PointLight(0xffb066, 45, 50); rim.position.set(-6, -1, -3); scene.add(rim);
+    const cool = new THREE.PointLight(0xffd9a0, 26, 50); cool.position.set(-4, 4, 5); scene.add(cool);
+    scene.add(new THREE.AmbientLight(0x2a2018, 1.1));
 
-    let mx = 0, my = 0, tmx = 0, tmy = 0;
+    let mx = 0, my = 0, tmx = 0, tmy = 0, scr = 0, tscr = 0;
+    const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
+    window.addEventListener('scroll', () => { tscr = clamp(window.scrollY / (window.innerHeight * 1.2), 0, 1); }, {passive:true});
     window.addEventListener('pointermove', e => {
       tmx = e.clientX / window.innerWidth * 2 - 1;
       tmy = -(e.clientY / window.innerHeight * 2 - 1);
@@ -835,7 +830,7 @@ if (box){
     function frame(){
       raf = requestAnimationFrame(frame);
       t += Math.min(clock.getDelta(), 0.05);
-      mx += (tmx - mx) * 0.045; my += (tmy - my) * 0.045;
+      mx += (tmx - mx) * 0.05; my += (tmy - my) * 0.05; scr += (tscr - scr) * 0.06;
 
       if (ready){
         const intro = Math.min(1, t / 1.2);
@@ -851,10 +846,10 @@ if (box){
         s.material.opacity = 0.07 + 0.1 * (0.5 + 0.5 * Math.sin(t * 0.4 + i));
       });
       /* камера стоит на месте: только лёгкий сдвиг от курсора, без наезда */
-      camera.position.x = mx * 0.3;
-      camera.position.y = 0.15 + my * 0.22;
-      camera.position.z = 6.05;
-      camera.lookAt(mx * 0.08, -0.05 + my * 0.06, 0);
+      camera.position.x = mx * 0.5;
+      camera.position.y = 0.3 + my * 0.32;
+      camera.position.z = 6.2 - scr * 0.7;
+      camera.lookAt(0, 0, 0);
 
       renderer.render(scene, camera);
       box.setAttribute('data-3d', ready ? 'ok' : 'loading');
