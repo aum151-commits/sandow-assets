@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>База Сандов — зал за 50 000 ₽ в год | Сандов Фитнес</title>
+<meta name="description" content="Сандов Фитнес, Нижегородская. Тренеру: зал 1100 м² за 50 000 ₽ в год, с личных тренировок клуб не берёт ни процента. Форматы Лайт, Профи, Легенда.">
+<meta name="theme-color" content="#F0EADE">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="База Сандов — зал за 50 000 ₽ в год">
+<meta property="og:description" content="С тренировок клуб не берёт ни процента. Зал 1100 м², 24/7, сауна, парковка. Нижегородская.">
+<meta property="og:type" content="website">
+<link rel="icon" href="img/logo-emblem.png">
+<link rel="stylesheet" href="fonts-local.css">
+<style>
+  :root{
+    --paper:#F0EADE; --paper-2:#E7DFCF; --paper-3:#F6F1E7;
+    --ink:#0B0906; --ink-soft:#2E2820; --ink-mute:#4A4237;
+    --gold:#B07A34; --gold-fill:#E9C77E; --gold-lite:#F3DCA6;
+    --line:rgba(11,9,6,.14); --hair:rgba(11,9,6,.08);
+    --disp:"Unbounded","Trebuchet MS",sans-serif;
+    --body:"Golos Text","Segoe UI",sans-serif;
+    --mono:"JetBrains Mono",Consolas,monospace;
+    --pad:clamp(20px,4.4vw,72px);
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; color:var(--ink); background:var(--paper); font-family:var(--body);
+    font-size:18px; line-height:1.68; font-weight:400;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden}
+  body::after{content:""; position:fixed; inset:0; pointer-events:none; z-index:90; opacity:.5; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/><feColorMatrix type='saturate' values='0'/></filter><rect width='220' height='220' filter='url(%23n)' opacity='.05'/></svg>")}
+  ::selection{background:rgba(192,139,78,.3)}
+  a{color:inherit; text-decoration:none}
+  img{display:block; max-width:100%}
+
+  /* ——— слои фона: глубина под содержимым ——— */
+  .bg{position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden}
+  .bg .blob{position:absolute; border-radius:50%; filter:blur(64px); will-change:transform}
+  .bg .b1{width:56vw; height:56vw; right:-14vw; top:-16vw;
+    background:radial-gradient(circle at 50% 50%, rgba(233,199,126,.75), rgba(233,199,126,0) 66%)}
+  .bg .b2{width:46vw; height:46vw; left:-14vw; top:38vh;
+    background:radial-gradient(circle at 50% 50%, rgba(192,139,78,.5), rgba(192,139,78,0) 68%)}
+  .bg .b3{width:34vw; height:34vw; right:6vw; bottom:-12vw;
+    background:radial-gradient(circle at 50% 50%, rgba(255,252,244,.9), rgba(255,252,244,0) 70%)}
+  .bg .grid{position:absolute; inset:-15% -10%;
+    background-image:
+      linear-gradient(rgba(11,9,6,.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(11,9,6,.055) 1px, transparent 1px);
+    background-size:128px 128px;
+    -webkit-mask-image:radial-gradient(120% 90% at 50% 30%, #000 20%, transparent 78%);
+    mask-image:radial-gradient(120% 90% at 50% 30%, #000 20%, transparent 78%)}
+  .bg .ghost{position:absolute; font-family:var(--mono); font-weight:500; letter-spacing:-.04em;
+    color:rgba(11,9,6,.055); white-space:nowrap; will-change:transform; user-select:none}
+  .bg .g1{font-size:clamp(120px,26vw,400px); right:-2vw; top:6vh}
+  .bg .g2{font-size:clamp(80px,13vw,190px); left:-3vw; top:58vh; color:rgba(11,9,6,.045)}
+  .bg .g3{font-family:var(--disp); font-weight:200; font-size:clamp(60px,9vw,140px);
+    letter-spacing:.02em; right:4vw; top:150vh; color:rgba(11,9,6,.05)}
+  .bg .vignette{position:absolute; inset:0;
+    background:radial-gradient(130% 90% at 50% 36%, transparent 45%, rgba(11,9,6,.13) 100%)}
+  main{position:relative; z-index:1}
+
+  .top{position:fixed; top:0; left:0; right:0; z-index:80; background:rgba(240,234,222,.92);
+    backdrop-filter:blur(8px); border-bottom:1px solid var(--hair); transition:box-shadow .3s}
+  .top-in{display:flex; align-items:center; justify-content:space-between; gap:20px; padding:16px var(--pad)}
+  .brand{display:flex; align-items:baseline; gap:12px}
+  .brand b{font-family:var(--disp); font-weight:600; font-size:17px; letter-spacing:.06em; text-transform:uppercase}
+  .brand span{font-family:var(--mono); font-size:13.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); font-weight:500}
+  .top-right{display:flex; align-items:center; gap:22px}
+  .top-tel{font-family:var(--mono); font-size:15.5px; font-weight:500}
+  @media (max-width:900px){ .top-tel{display:none} }
+
+  .pill{display:inline-flex; align-items:center; justify-content:center; gap:8px; cursor:pointer;
+    padding:16px 30px; border-radius:999px; border:1px solid var(--ink); background:transparent;
+    font-family:var(--disp); font-weight:500; font-size:13.5px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--ink); transition:background .3s var(--ease), color .3s, box-shadow .3s, transform .3s var(--ease)}
+  .pill:hover{background:var(--ink); color:var(--paper)}
+  .pill.gold{background:linear-gradient(150deg,var(--gold-lite),var(--gold-fill) 55%,var(--gold)); border-color:transparent; color:#241a0b}
+  .pill.gold:hover{box-shadow:0 12px 30px rgba(192,139,78,.35); transform:translateY(-1px)}
+
+  /* ——— первый экран ——— */
+  .hero{position:relative; padding:clamp(112px,14vh,170px) var(--pad) clamp(40px,6vw,80px); overflow:hidden}
+  .hero-grid{max-width:1340px; margin:0 auto; display:grid; grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);
+    gap:clamp(24px,4vw,60px); align-items:center; position:relative; z-index:2}
+  .hero-grid > *{min-width:0}
+  @media (max-width:1040px){ .hero-grid{grid-template-columns:minmax(0,1fr)} }
+
+  .eyebrow{font-family:var(--mono); font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); font-weight:500; margin:0 0 22px}
+  h1{font-family:var(--disp); font-weight:500; font-size:clamp(32px,5.2vw,66px); line-height:1.06; letter-spacing:-.02em; margin:0; max-width:21ch}
+  h1 em{font-style:normal; color:var(--gold)}
+  .hero-note{max-width:44ch; margin:26px 0 0; color:var(--ink-soft); font-size:19px; line-height:1.65; font-weight:400}
+  .hero-cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:32px}
+
+  .ledger{margin-top:34px; border-top:2px solid var(--ink); font-family:var(--mono); font-size:15.5px; max-width:600px;
+    padding:0 22px 18px; background:linear-gradient(180deg, rgba(255,253,247,.72), rgba(255,253,247,.28));
+    box-shadow:0 30px 60px -46px rgba(11,9,6,.7), inset 0 1px 0 rgba(255,255,255,.7)}
+  .ledger .row{display:flex; justify-content:space-between; gap:14px; padding:13px 0; border-bottom:1px solid var(--hair);
+    transition:background .3s, padding .3s}
+  .ledger .row:hover{background:rgba(233,199,126,.16); padding-left:8px; padding-right:8px}
+  .ledger .row span{color:var(--ink-soft); font-family:var(--body); font-size:17px}
+  .ledger .row b{font-weight:700; font-size:17px; white-space:nowrap}
+  .ledger .row.total{border-bottom:1px solid var(--ink); padding:18px 0}
+  .ledger .row.total b{font-size:24px; color:var(--gold)}
+  .ledger .cap{margin:14px 0 0; font-family:var(--mono); font-size:14px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-mute)}
+
+  /* сцена со статуэткой */
+  .scene{position:relative; aspect-ratio:1/1.12; min-height:320px}
+  .scene::before{content:""; position:absolute; inset:6% -6% -4%; border-radius:50%;
+    background:radial-gradient(50% 50% at 50% 55%, rgba(233,199,126,.55), transparent 70%);
+    filter:blur(18px); z-index:0; pointer-events:none}
+  .scene canvas{position:absolute; inset:0; width:100%; height:100%; display:block; z-index:1}
+  .scene .shadow{position:absolute; left:50%; bottom:8%; width:58%; height:9%; transform:translateX(-50%);
+    background:radial-gradient(50% 50% at 50% 50%, rgba(11,9,6,.28), transparent 72%); filter:blur(6px); opacity:0; transition:opacity 1.2s}
+  .scene.ready .shadow{opacity:1}
+  .scene .still{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; transition:opacity .6s}
+  .scene .still img{width:86%; filter:drop-shadow(0 24px 40px rgba(11,9,6,.28))}
+  .scene.fallback canvas{display:none}
+  .scene:not(.fallback) .still{opacity:0; pointer-events:none}
+  .scene-cap{position:absolute; left:0; bottom:-2px; font-family:var(--mono); font-size:12.5px; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--ink-soft); font-weight:500}
+  @media (max-width:1040px){ .scene{aspect-ratio:1/1; min-height:0; height:clamp(300px,78vw,460px); margin-top:18px} }
+
+  /* ——— разделы ——— */
+  .sect{padding:clamp(58px,7.5vw,104px) var(--pad); border-top:1px solid var(--hair); position:relative;
+    background:linear-gradient(180deg, rgba(255,253,247,.55), rgba(255,253,247,.12) 60%, transparent);
+    box-shadow:0 -1px 0 rgba(255,255,255,.6), 0 40px 60px -54px rgba(11,9,6,.55)}
+  .sect-in{max-width:1340px; margin:0 auto; position:relative; z-index:2}
+  .sect-head{display:grid; grid-template-columns:76px minmax(0,1fr); gap:clamp(16px,3vw,42px); align-items:start}
+  .sect-head .n{font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.1em; color:var(--gold); padding-top:18px}
+  h2{font-family:var(--disp); font-weight:500; font-size:clamp(26px,3.3vw,46px); line-height:1.16; letter-spacing:-.02em; margin:0; max-width:24ch}
+  h2 em{font-style:normal; color:var(--gold)}
+  .sect-sub{grid-column:2; margin:18px 0 0; max-width:54ch; color:var(--ink-soft); font-size:18px; line-height:1.65}
+  @media (max-width:760px){ .sect-head{grid-template-columns:1fr} .sect-sub{grid-column:1} .sect-head .n{padding-top:0; margin-bottom:10px} }
+
+  /* ——— главная цифра и три под ней ——— */
+  .stats{margin-top:clamp(30px,5vw,64px); border-top:1px solid var(--ink);
+    display:grid; grid-template-columns:1.08fr .92fr; align-items:stretch}
+  .stat-main{padding:clamp(24px,3.4vw,44px) clamp(20px,3vw,48px) clamp(24px,3.4vw,40px) 0;
+    border-right:1px solid var(--hair); display:flex; flex-direction:column; justify-content:center}
+  .stat-k{font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); display:block}
+  .stat-main b{display:block; margin:clamp(8px,1.2vw,16px) 0 0; font-family:var(--disp); font-weight:400;
+    font-size:clamp(76px,13vw,196px); line-height:.84; letter-spacing:-.05em; color:var(--gold)}
+  .stat-main p{margin:clamp(14px,1.8vw,24px) 0 0; font-size:clamp(17px,1.35vw,20px); line-height:1.55;
+    color:var(--ink-soft); max-width:32ch}
+  .stat-side{display:flex; flex-direction:column; justify-content:center}
+  .stat-side .stat{display:flex; align-items:baseline; gap:clamp(12px,2vw,22px);
+    padding:clamp(14px,2vw,24px) 0 clamp(14px,2vw,24px) clamp(16px,2.6vw,40px);
+    border-bottom:1px solid var(--hair)}
+  .stat-side .stat:last-child{border-bottom:0}
+  .stat-side b{font-family:var(--disp); font-weight:400; font-size:clamp(30px,4.2vw,58px); line-height:.95;
+    letter-spacing:-.03em; white-space:nowrap; min-width:clamp(120px,13vw,200px)}
+  .stat-side b u{text-decoration:none; font-family:var(--mono); font-size:clamp(15px,.36em,24px); letter-spacing:.02em;
+    color:var(--ink-soft); font-weight:600; margin-left:.14em}
+  .stat-side span{font-size:clamp(16px,1.25vw,18px); line-height:1.5; color:var(--ink-soft); max-width:24ch; font-weight:500}
+  @media (max-width:820px){
+    .stats{grid-template-columns:1fr}
+    .stat-main{border-right:0; border-bottom:1px solid var(--hair); padding-right:0}
+    .stat-side .stat{padding-left:0}
+  }
+
+  /* форматы — карточки тарифов, как на Богородицке */
+  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:clamp(26px,4vw,52px); perspective:1500px}
+  .card{position:relative; display:flex; flex-direction:column; padding:30px 26px 26px; border:1px solid var(--line);
+    border-radius:10px; background:linear-gradient(180deg, rgba(255,255,255,.86), rgba(255,253,247,.5));
+    box-shadow:0 30px 54px -42px rgba(11,9,6,.75);
+    transform-style:preserve-3d; will-change:transform;
+    transition:transform .5s var(--ease), box-shadow .4s, border-color .4s}
+  .card:hover{box-shadow:0 40px 70px -44px rgba(11,9,6,.8); border-color:rgba(192,139,78,.5)}
+  .card.is-main{border-color:rgba(192,139,78,.6);
+    background:linear-gradient(180deg, rgba(255,250,238,.97), rgba(250,240,220,.7))}
+  .card-top{display:flex; align-items:center; justify-content:space-between; gap:12px}
+  .card-name{font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft)}
+  .card-badge{font-family:var(--mono); font-size:12.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#241a0b;
+    background:var(--gold-fill); padding:4px 11px; border-radius:999px}
+  .card-price{font-family:var(--disp); font-weight:500; font-size:clamp(28px,2.7vw,36px); letter-spacing:-.02em; margin:18px 0 0; line-height:1.1}
+  .card-price i{font-style:normal; font-family:var(--mono); font-size:clamp(15px,.38em,20px); color:var(--ink-soft); letter-spacing:.02em; font-weight:600}
+  .card-price.is-word{font-size:clamp(19px,1.9vw,23px); line-height:1.25}
+  .card-note{margin:10px 0 0; font-size:16px; color:var(--gold); line-height:1.5; font-weight:600}
+  .card-sub{margin:14px 0 0; font-size:16px; color:var(--ink-soft); line-height:1.5}
+  .card ul{list-style:none; margin:18px 0 auto; padding:16px 0 0; border-top:1px solid var(--hair); display:grid; gap:9px}
+  .card li{font-size:16.5px; line-height:1.55; color:var(--ink); display:flex; gap:9px}
+  .card li::before{content:"—"; color:var(--gold)}
+  .card li.off{color:rgba(11,9,6,.32); text-decoration:line-through}
+  .card li.off::before{opacity:.4}
+  .card-cta{margin-top:24px; width:100%}
+  .card-dots{display:none}
+  .card-hint{display:none}
+  @media (max-width:900px){
+    .cards{display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; margin-left:calc(var(--pad) * -1);
+      margin-right:calc(var(--pad) * -1); padding:0 var(--pad) 6px; scrollbar-width:none; perspective:none}
+    .cards::-webkit-scrollbar{display:none}
+    .card{flex:0 0 84%; max-width:340px; scroll-snap-align:center; transform:none !important}
+    .card-dots{display:flex; justify-content:center; gap:8px; margin-top:16px}
+    .card-dots i{width:7px; height:7px; border-radius:50%; background:rgba(11,9,6,.22); transition:.2s}
+    .card-dots i.on{background:var(--gold); transform:scale(1.25)}
+    .card-hint{display:block; text-align:center; font-family:var(--mono); font-size:13px; letter-spacing:.08em;
+      text-transform:uppercase; color:var(--ink-mute); margin-top:8px}
+  }
+
+  /* оборудование — плитки с фактами */
+  .gears{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; margin-top:clamp(26px,4vw,48px);
+    border-top:1px solid var(--ink); border-left:1px solid var(--hair); background:var(--hair)}
+  .gear{background:linear-gradient(180deg, rgba(255,253,247,.72), rgba(255,253,247,.22)); padding:24px 22px 26px;
+    transition:background .35s}
+  .gear:hover{background:rgba(255,250,238,.95)}
+  .gear-k{font-family:var(--mono); font-size:12.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--gold)}
+  .gear h3{font-family:var(--disp); font-weight:600; font-size:clamp(17px,1.6vw,20px); line-height:1.3;
+    letter-spacing:-.005em; margin:12px 0 0}
+  .gear p{margin:10px 0 0; font-size:17px; line-height:1.55; color:var(--ink-soft)}
+  @media (max-width:900px){ .gears{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:620px){ .gears{grid-template-columns:1fr} }
+
+  .strip{display:grid; grid-template-columns:repeat(6,1fr); gap:8px; margin-top:clamp(24px,4vw,44px); perspective:1200px}
+  .strip figure{margin:0; position:relative; overflow:hidden; background:var(--paper-2); aspect-ratio:1/1.2;
+    transform-style:preserve-3d; transition:transform .5s var(--ease);
+    box-shadow:0 26px 44px -30px rgba(11,9,6,.6), 0 2px 0 rgba(255,255,255,.7) inset}
+  .strip figure.wide{grid-column:span 2; aspect-ratio:2/1.2}
+  .strip img{width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(1.02); transition:filter .6s, transform 1.2s var(--ease)}
+  .strip figure:hover img{filter:grayscale(0); transform:scale(1.05)}
+  .strip figcaption{position:absolute; left:12px; bottom:10px; font-family:var(--mono); font-size:11.5px; font-weight:600;
+    letter-spacing:.06em; text-transform:uppercase; color:#fff; background:rgba(11,9,6,.7); padding:4px 9px}
+  @media (max-width:900px){ .strip{grid-template-columns:repeat(2,1fr)} .strip figure.wide{grid-column:span 2} }
+
+  .facts{display:grid; grid-template-columns:repeat(2,1fr); margin-top:clamp(24px,4vw,42px); border-top:1px solid var(--hair)}
+  .facts div{display:flex; gap:16px; padding:16px 0; border-bottom:1px solid var(--hair); align-items:baseline}
+  .facts div:nth-child(odd){padding-right:26px}
+  .facts div:nth-child(even){padding-left:26px; border-left:1px solid var(--hair)}
+  .facts b{font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.08em; color:var(--gold); min-width:76px}
+  .facts span{font-size:17px; color:var(--ink-soft)}
+  @media (max-width:760px){ .facts{grid-template-columns:1fr} .facts div:nth-child(even){padding-left:0; border-left:0} .facts div:nth-child(odd){padding-right:0} }
+
+  .steps{margin-top:clamp(24px,4vw,44px); border-top:1px solid var(--ink)}
+  .step{display:grid; grid-template-columns:76px minmax(0,.7fr) minmax(0,1.3fr); gap:clamp(14px,2.4vw,34px);
+    padding:22px 0; border-bottom:1px solid var(--hair); align-items:baseline}
+  .step .k{font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.1em; color:var(--gold)}
+  .step h3{font-family:var(--disp); font-weight:600; font-size:clamp(19px,1.9vw,24px); margin:0}
+  .step p{margin:0; color:var(--ink-soft); font-size:17.5px; max-width:56ch}
+  @media (max-width:820px){ .step{grid-template-columns:1fr; gap:8px} }
+
+  .lead{background:linear-gradient(180deg,rgba(233,199,126,.18),transparent 60%)}
+  .lead-grid{display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:clamp(28px,5vw,74px);
+    margin-top:clamp(24px,4vw,44px); align-items:start}
+  @media (max-width:960px){ .lead-grid{grid-template-columns:1fr} }
+  .addr{font-family:var(--mono); font-size:14px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); line-height:2.1; margin-top:24px}
+  form{border:1px solid var(--line); background:rgba(255,255,255,.34); padding:clamp(22px,2.6vw,34px)}
+  .field{margin-bottom:16px}
+  .field label{display:block; font-family:var(--mono); font-size:12.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:9px}
+  .field input{width:100%; padding:16px 18px; border:1px solid var(--line); background:rgba(255,255,255,.72);
+    color:var(--ink); font-family:var(--body); font-size:18px; border-radius:2px; transition:.25s}
+  .field input::placeholder{color:rgba(11,9,6,.34)}
+  .field input:focus{outline:none; border-color:var(--gold); background:#fff; box-shadow:0 0 0 3px rgba(192,139,78,.14)}
+  .picker{display:grid; gap:8px; margin:4px 0 22px}
+  .pick{display:flex; align-items:center; gap:12px; padding:16px 18px; cursor:pointer; border:1px solid var(--line);
+    border-radius:2px; transition:.25s; font-size:17px; color:var(--ink); background:rgba(255,255,255,.55)}
+  .pick:hover{border-color:var(--gold)}
+  .pick input{position:absolute; opacity:0; pointer-events:none}
+  .pick i{width:13px; height:13px; border-radius:50%; border:1px solid rgba(11,9,6,.4); flex:0 0 auto; position:relative; transition:.2s}
+  .pick input:checked ~ i{border-color:var(--gold)}
+  .pick input:checked ~ i::after{content:""; position:absolute; inset:3px; border-radius:50%; background:var(--gold)}
+  .pick:has(input:checked){border-color:var(--gold); background:rgba(233,199,126,.3); color:var(--ink)}
+  .form-note{margin:14px 0 0; font-size:15px; color:var(--ink-soft); line-height:1.5}
+  .form-status{margin:14px 0 0; font-size:17px; line-height:1.5}
+  .form-status.ok{color:#4A7330}
+  .form-status.err{color:#A5482B}
+
+  footer{border-top:1px solid var(--line); padding:30px var(--pad) 38px}
+  .foot{max-width:1340px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px;
+    flex-wrap:wrap; font-size:15.5px; color:var(--ink-soft)}
+  .foot b{font-family:var(--disp); font-weight:600; letter-spacing:.06em; text-transform:uppercase; font-size:14px; color:var(--ink)}
+
+  [data-rv]{opacity:0; transform:translateY(16px); transition:opacity .9s var(--ease), transform .9s var(--ease)}
+  [data-rv].in{opacity:1; transform:none}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition-duration:.001ms !important}
+    [data-rv]{opacity:1; transform:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="top" id="top">
+  <div class="top-in">
+    <a class="brand" href="#hero"><b>Сандов</b><span>База Сандов</span></a>
+    <div class="top-right">
+      <a class="top-tel" href="tel:+74957956957">+7 (495) 795-69-57</a>
+      <a class="pill gold" href="#zayavka">Оставить заявку</a>
+    </div>
+  </div>
+</div>
+
+<header class="hero" id="hero">
+  <div class="hero-grid">
+    <div>
+      <p class="eyebrow">Тренерам · Нижегородская</p>
+      <h1>Аренда зала — <em>минус 92%</em> от годовой цены</h1>
+      <p class="hero-note">Помесячно год аренды стоил бы 600 000 ₽. По программе — 50 000 ₽ за весь год. С персональных тренировок клуб не берёт ни процента: всё, что ты заработал, остаётся тебе.</p>
+      <div class="hero-cta">
+        <a class="pill gold" href="#zayavka">Оставить заявку</a>
+        <a class="pill" href="tel:+74957956957">+7 (495) 795-69-57</a>
+      </div>
+
+      <div class="ledger">
+        <div class="row"><span>Год аренды по месяцам, 50 000 ₽/мес</span><b>600 000 ₽</b></div>
+        <div class="row"><span>Год аренды по программе</span><b>50 000 ₽</b></div>
+        <div class="row"><span>Экономия за год</span><b>550 000 ₽</b></div>
+        <div class="row"><span>Процент с персональных тренировок</span><b>0%</b></div>
+        <div class="row total"><span>Скидка на аренду</span><b>−92%</b></div>
+        <p class="cap">Считаем на встрече на твоих цифрах</p>
+      </div>
+    </div>
+
+    <div class="scene" id="scene">
+      <canvas class="scene-gl"></canvas>
+      <div class="still"><img src="img/statue-34.png" alt="Статуэтка Сандова"></div>
+      <div class="shadow" aria-hidden="true"></div>
+      <div class="scene-cap">Евгений Сандов · бронза</div>
+    </div>
+  </div>
+</header>
+
+<section class="sect" id="programma">
+  <div class="sect-in">
+    <div class="sect-head">
+      <div class="n">01</div>
+      <div>
+        <h2 data-rv>Что ты получаешь <em>за 50 000 ₽ в год</em></h2>
+        <p class="sect-sub" data-rv>Ты платишь за место, где работаешь. С твоих персональных тренировок клуб не берёт ни процента — всё, что приносят твои клиенты, остаётся тебе.</p>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat-main" data-rv>
+        <span class="stat-k">Скидка на аренду</span>
+        <b>−<span data-count="92">0</span>%</b>
+        <p>Год аренды по месяцам — 600 000 ₽. По программе — 50 000 ₽ за весь год.</p>
+      </div>
+      <div class="stat-side">
+        <div class="stat" data-rv><b><span data-count="50000">0</span><u>₽</u></b><span>зал на весь год, оплата в первый месяц</span></div>
+        <div class="stat" data-rv><b><span data-count="0">0</span><u>%</u></b><span>клуб берёт с твоих персональных тренировок</span></div>
+        <div class="stat" data-rv><b><span data-count="1100">0</span><u>м²</u></b><span>тренажёрный зал, весь клуб — 2500 м²</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sect" id="formaty">
+  <div class="sect-in">
+    <div class="sect-head">
+      <div class="n">02</div>
+      <div>
+        <h2 data-rv>Три формата — <em>по твоей базе</em></h2>
+        <p class="sect-sub" data-rv>Разница не в деньгах, а в том, откуда приходят люди и есть ли дежурства.</p>
+      </div>
+    </div>
+
+    <div class="cards" id="cards">
+      <article class="card is-main" data-rv>
+        <div class="card-top"><span class="card-name">Лайт</span><span class="card-badge">Основной</span></div>
+        <div class="card-price">50 000 <i>₽/год</i></div>
+        <div class="card-note">вместо 600 000 ₽ по месяцам — скидка 92%</div>
+        <div class="card-sub">только свои клиенты, до десяти человек</div>
+        <ul>
+          <li>Твой клиент закреплён за тобой всегда</li>
+          <li>Зал 1100 м², доступ 24/7</li>
+          <li>Сауна, раздевалки, парковка</li>
+          <li class="off">Клиенты клуба</li>
+          <li class="off">Дежурства</li>
+        </ul>
+        <button class="pill gold card-cta" type="button" data-pick="Лайт — только свои клиенты">Выбрать Лайт</button>
+      </article>
+
+      <article class="card" data-rv>
+        <div class="card-top"><span class="card-name">Профи</span></div>
+        <div class="card-price">50 000 <i>₽/год</i></div>
+        <div class="card-note">те же деньги — и клиент клуба может попросить тебя</div>
+        <div class="card-sub">свои клиенты, десять человек и больше</div>
+        <ul>
+          <li>Своя база любая, твой клиент всегда твой</li>
+          <li>Клиент клуба может попросить именно тебя</li>
+          <li>Зал 1100 м², доступ 24/7</li>
+          <li class="off">Поток клиентов клуба и дежурства</li>
+        </ul>
+        <button class="pill card-cta" type="button" data-pick="Профи — десять и больше">Выбрать Профи</button>
+      </article>
+
+      <article class="card" data-rv>
+        <div class="card-top"><span class="card-name">Легенда</span></div>
+        <div class="card-price is-word">Условия на встрече</div>
+        <div class="card-note">посчитаем на твоих цифрах, без обязательств</div>
+        <div class="card-sub">свои и клиенты клуба, с дежурствами</div>
+        <ul>
+          <li>Клиенты клуба и распределение заявок</li>
+          <li>Заявку видят все тренеры сразу, берёт первый</li>
+          <li>Берёшь дежурства</li>
+          <li>Оплата месяц за месяцем — обнуляется, когда приводишь тренеров</li>
+        </ul>
+        <button class="pill card-cta" type="button" data-pick="Легенда — нужны клиенты клуба">Выбрать Легенду</button>
+      </article>
+    </div>
+    <div class="card-dots" id="cardDots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+    <p class="card-hint">Листайте форматы →</p>
+  </div>
+</section>
+
+<section class="sect" id="zal">
+  <div class="sect-in">
+    <div class="sect-head">
+      <div class="n">03</div>
+      <div>
+        <h2 data-rv>Железо, секторы, <em>своя раздевалка</em></h2>
+        <p class="sect-sub" data-rv>Зал, в котором тренеру не приходится оправдываться за оборудование и ждать свободную стойку.</p>
+      </div>
+    </div>
+
+    <div class="gears">
+      <div class="gear" data-rv>
+        <span class="gear-k">Бренды</span>
+        <h3>Nautilus, Bodystyle, Hammer</h3>
+        <p>Линейки, которые профессионалы узнают по ходу и качеству сборки. Не безымянный Китай.</p>
+      </div>
+      <div class="gear" data-rv>
+        <span class="gear-k">Грифы</span>
+        <h3>Два грифа Eleiko</h3>
+        <p>Тот же производитель, что на Олимпийских играх по тяжёлой атлетике. Сталь держит вес и не играет — на любых килограммах.</p>
+      </div>
+      <div class="gear" data-rv>
+        <span class="gear-k">Помосты</span>
+        <h3>Два помоста для тяжёлой атлетики</h3>
+        <p>Можно ставить рывок и толчок, а не только тянуть в стойке.</p>
+      </div>
+      <div class="gear" data-rv>
+        <span class="gear-k">Планировка</span>
+        <h3>Зал разделён на секторы</h3>
+        <p>Плечи-грудь, спина-ноги и другие связки — по группам мышц. Опытному тренеру это экономит время: работает в одном-двух секторах.</p>
+      </div>
+      <div class="gear" data-rv>
+        <span class="gear-k">Тренеру</span>
+        <h3>Отдельная раздевалка для тренеров</h3>
+        <p>Не общая с клиентами: переодеться, оставить вещи, выйти к клиенту.</p>
+      </div>
+      <div class="gear" data-rv>
+        <span class="gear-k">Режим</span>
+        <h3>Круглосуточно, сауна, парковка</h3>
+        <p>Клуб 24/7, финская сауна и душевые, охраняемая парковка, метро Нижегородская рядом.</p>
+      </div>
+    </div>
+
+    <div class="strip">
+      <figure class="wide" data-rv data-tilt><img src="img/zal-day.jpg" alt="Тренажёрный зал" loading="lazy"><figcaption>Зал 1100 м²</figcaption></figure>
+      <figure data-rv data-tilt><img src="img/gruzobloki.jpg" alt="Свободные веса" loading="lazy"><figcaption>Свободные веса</figcaption></figure>
+      <figure data-rv data-tilt><img src="img/rychazhnye.jpg" alt="Рычажные тренажёры" loading="lazy"><figcaption>Рычажные</figcaption></figure>
+      <figure data-rv data-tilt><img src="img/zal-vdol.jpg" alt="Кардио" loading="lazy"><figcaption>Кардио</figcaption></figure>
+      <figure data-rv data-tilt><img src="img/group-hall-wide.jpg" alt="Групповой зал" loading="lazy"><figcaption>Групповой</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sect" id="kak">
+  <div class="sect-in">
+    <div class="sect-head">
+      <div class="n">04</div>
+      <div><h2 data-rv>Что дальше — <em>три шага</em></h2></div>
+    </div>
+    <div class="steps">
+      <div class="step" data-rv><div class="k">01</div><h3>Заявка</h3><p>Имя, телефон и одна строчка о том, где ты сейчас: своя база или нужны клиенты клуба.</p></div>
+      <div class="step" data-rv><div class="k">02</div><h3>Звонок</h3><p>Пять минут. Отвечаем сразу по телефону, а не «приезжайте — тогда расскажем».</p></div>
+      <div class="step" data-rv><div class="k">03</div><h3>Встреча</h3><p>Двадцать пять минут: смотришь зал, считаем твой вариант на твоих цифрах.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sect lead" id="zayavka">
+  <div class="sect-in">
+    <div class="sect-head">
+      <div class="n">05</div>
+      <div><h2 data-rv>Оставь контакт — <em>перезвоним</em></h2></div>
+    </div>
+
+    <div class="lead-grid">
+      <div data-rv>
+        <p class="sect-sub" style="margin-top:0">Позвоним в рабочее время, ответим на вопросы и подберём формат под твою ситуацию. Дальше — встреча и расчёт.</p>
+        <div class="addr">Нижегородская ул., 29–33, стр. 3<br>круглосуточно<br>+7 (495) 795-69-57</div>
+      </div>
+
+      <form id="leadForm" novalidate data-rv>
+        <div class="field">
+          <label for="name">Как тебя зовут</label>
+          <input id="name" name="name" type="text" autocomplete="name" placeholder="Имя" required>
+        </div>
+        <div class="field">
+          <label for="phone">Телефон</label>
+          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required>
+        </div>
+        <label style="display:block; font-family:var(--mono); font-size:12.5px; letter-spacing:.1em; font-weight:600; text-transform:uppercase; color:var(--ink-soft); margin-bottom:9px">Твоя ситуация</label>
+        <div class="picker">
+          <label class="pick"><input type="radio" name="situation" value="Лайт — только свои клиенты"><i></i>Веду только своих клиентов</label>
+          <label class="pick"><input type="radio" name="situation" value="Профи — десять и больше"><i></i>Клиентов десять и больше</label>
+          <label class="pick"><input type="radio" name="situation" value="Легенда — нужны клиенты клуба"><i></i>Хочу клиентов клуба</label>
+        </div>
+        <button class="pill gold" type="submit" style="width:100%">Отправить</button>
+        <p class="form-note">Нажимая «Отправить», ты соглашаешься на звонок по указанному номеру.</p>
+        <p class="form-status" id="status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot">
+    <b>Сандов Фитнес · База Сандов</b>
+    <div>Нижегородская ул., 29–33, стр. 3 · круглосуточно</div>
+    <a href="tel:+74957956957">+7 (495) 795-69-57</a>
+  </div>
+</footer>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://aum151-commits.github.io/sandow-assets/three/three.module.js",
+  "three/addons/": "https://aum151-commits.github.io/sandow-assets/three/addons/"
+}}
+</script>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var top = document.getElementById("top");
+  function onScroll(){
+    if(top) top.style.boxShadow = window.scrollY > 20 ? "0 1px 0 rgba(11,9,6,.08), 0 10px 30px -22px rgba(11,9,6,.55)" : "none";
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, {threshold:.12, rootMargin:"0px 0px -6% 0px"});
+  document.querySelectorAll("[data-rv]").forEach(function(el){ io.observe(el); });
+
+  function fmt(n){ return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, " "); }
+  function animate(el){
+    var t = parseFloat(el.dataset.count || "0");
+    if(reduce){ el.textContent = fmt(t); return; }
+    var t0 = performance.now(), dur = 1200;
+    function step(now){
+      var p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(t * e);
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var ioN = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ animate(e.target); ioN.unobserve(e.target); } });
+  }, {threshold:.6});
+  document.querySelectorAll("[data-count]").forEach(function(el){ ioN.observe(el); });
+
+  /* карточки форматов: объём под курсором, точки на телефоне, кнопка в форму */
+  (function(){
+    var wrap = document.getElementById("cards");
+    if(!wrap) return;
+    var cards = [].slice.call(wrap.querySelectorAll(".card"));
+    var dots = [].slice.call(document.querySelectorAll("#cardDots i"));
+
+    if(!reduce){
+      cards.forEach(function(c){
+        c.addEventListener("pointermove", function(e){
+          if(window.innerWidth <= 900) return;
+          var r = c.getBoundingClientRect();
+          var px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
+          c.style.transform = "rotateY(" + (px * 5).toFixed(2) + "deg) rotateX(" + (-py * 5).toFixed(2) + "deg) translateY(-4px)";
+        });
+        c.addEventListener("pointerleave", function(){ c.style.transform = ""; });
+      });
+    }
+    function upd(){
+      if(!dots.length) return;
+      if(window.innerWidth > 900){ dots.forEach(function(d,i){ d.classList.toggle("on", i === 0); }); return; }
+      var mid = wrap.scrollLeft + wrap.clientWidth / 2, best = 0, bd = 1e9;
+      cards.forEach(function(el,i){ var m = el.offsetLeft + el.offsetWidth/2, dd = Math.abs(m - mid); if(dd < bd){ bd = dd; best = i; } });
+      dots.forEach(function(d,i){ d.classList.toggle("on", i === best); });
+    }
+    var t; wrap.addEventListener("scroll", function(){ clearTimeout(t); t = setTimeout(upd, 70); }, {passive:true});
+    window.addEventListener("resize", upd); upd();
+  })();
+
+  document.querySelectorAll("[data-pick]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var radio = document.querySelector('input[name="situation"][value="' + b.dataset.pick + '"]');
+      if(radio) radio.checked = true;
+      document.getElementById("zayavka").scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"start"});
+    });
+  });
+
+  /* фотографии откликаются объёмом */
+  (function(){
+    if(reduce) return;
+    document.querySelectorAll(".strip figure[data-tilt]").forEach(function(z){
+      z.addEventListener("pointermove", function(e){
+        var r = z.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
+        z.style.transform = "rotateY(" + (px * 7).toFixed(2) + "deg) rotateX(" + (-py * 7).toFixed(2) + "deg)";
+      });
+      z.addEventListener("pointerleave", function(){ z.style.transform = ""; });
+    });
+  })();
+
+  /* фон живёт на своих глубинах — слои едут с разной скоростью */
+  (function(){
+    var layers = [].slice.call(document.querySelectorAll(".bg [data-depth]"));
+    if(!layers.length) return;
+    var raf = null;
+    function upd(){
+      raf = null;
+      var y = window.scrollY || 0;
+      for(var i = 0; i < layers.length; i++){
+        var d = parseFloat(layers[i].dataset.depth || "0");
+        layers[i].style.transform = "translate3d(0," + (-y * d).toFixed(1) + "px,0)";
+      }
+    }
+    if(reduce){ return; }
+    window.addEventListener("scroll", function(){ if(!raf) raf = requestAnimationFrame(upd); }, {passive:true});
+    upd();
+  })();
+
+  (function(){
+    // Приёмник заявок. Пока группа в Телеграме не создана, здесь пусто —
+    // и форма честно говорит, что заявка не ушла.
+    var LEADS_URL = "";
+    var form = document.getElementById("leadForm"), status = document.getElementById("status");
+    if(!form) return;
+    function digits(s){ return (s || "").replace(/\D/g, ""); }
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      var name = form.name.value.trim(), phone = digits(form.phone.value);
+      var situation = (form.querySelector('input[name="situation"]:checked') || {}).value || "";
+      status.className = "form-status";
+      if(name.length < 2){ status.classList.add("err"); status.textContent = "Напиши, как тебя зовут."; form.name.focus(); return; }
+      if(phone.length < 10){ status.classList.add("err"); status.textContent = "Проверь номер телефона — нужно 10 цифр и больше."; form.phone.focus(); return; }
+      if(!LEADS_URL){
+        status.classList.add("err");
+        status.textContent = "Форма пока не подключена к доставке заявок. Позвони: +7 (495) 795-69-57 — ответим на всё сразу.";
+        return;
+      }
+      var btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true; var was = btn.textContent; btn.textContent = "Отправляем…";
+      fetch(LEADS_URL, {method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({name:name, phone:form.phone.value.trim(), situation:situation, page:"baza-sandov", ts:new Date().toISOString()})
+      }).then(function(r){
+        if(!r.ok) throw new Error("HTTP " + r.status);
+        form.reset(); status.className = "form-status ok";
+        status.textContent = "Готово. Перезвоним в рабочее время — ответим на вопросы и подберём формат.";
+      }).catch(function(){
+        status.className = "form-status err";
+        status.textContent = "Не ушло — похоже, связь подвела. Позвони: +7 (495) 795-69-57.";
+      }).then(function(){ btn.disabled = false; btn.textContent = was; });
+    });
+    form.phone.addEventListener("input", function(){
+      var d = digits(this.value).slice(0, 11);
+      if(!d){ this.value = ""; return; }
+      if(d[0] === "8") d = "7" + d.slice(1);
+      var out = "+7";
+      if(d.length > 1) out += " (" + d.slice(1, 4);
+      if(d.length >= 4) out += ") " + d.slice(4, 7);
+      if(d.length >= 7) out += "-" + d.slice(7, 9);
+      if(d.length >= 9) out += "-" + d.slice(9, 11);
+      this.value = out;
+    });
+  })();
+})();
+</script>
+
+<script type="module">
+/* ——— Статуэтка Сандова: студийный портрет в дымке.
+   Ракурс фиксированный — три четверти спереди; камера стоит на месте,
+   двигается только чуть-чуть от курсора. Глубина — туманом и размытыми
+   огнями на разных расстояниях, без геометрических конструкций. */
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+const box = document.getElementById('scene');
+if (box){
+  const fail = () => { box.classList.add('fallback'); };
+  try {
+    const canvas = box.querySelector('.scene-gl');
+    const probe = document.createElement('canvas');
+    if (!(probe.getContext('webgl2') || probe.getContext('webgl'))) { fail(); throw new Error('no webgl'); }
+
+    const PAPER = 0xF0EADE;
+    const small = window.innerWidth <= 640;
+    const W = () => box.clientWidth || 420;
+    const H = () => box.clientHeight || 460;
+
+    const renderer = new THREE.WebGLRenderer({canvas, antialias: !small, alpha: true});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, small ? 1.6 : 2));
+    renderer.setSize(W(), H());
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.3;
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.Fog(PAPER, 4.2, 15);
+
+    const camera = new THREE.PerspectiveCamera(36, W()/H(), 0.1, 60);
+    camera.position.set(0, 0.12, 6.05);
+    camera.lookAt(0, -0.05, 0);
+
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.05).texture;
+
+    const bronze = new THREE.MeshStandardMaterial({color: 0xF0B96A, metalness: 1, roughness: 0.15, envMapIntensity: 2.6});
+    const bronzeDark = new THREE.MeshStandardMaterial({color: 0xC08A46, metalness: 1, roughness: 0.3, envMapIntensity: 1.8});
+
+    /* мягкий круг для дымки и огней */
+    function softCircle(inner, mid){
+      const c = document.createElement('canvas'); c.width = c.height = 256;
+      const g = c.getContext('2d');
+      const grad = g.createRadialGradient(128,128,2,128,128,126);
+      grad.addColorStop(0, inner);
+      grad.addColorStop(.45, mid);
+      grad.addColorStop(1, 'rgba(233,199,126,0)');
+      g.fillStyle = grad; g.fillRect(0,0,256,256);
+      const t = new THREE.CanvasTexture(c);
+      t.colorSpace = THREE.SRGBColorSpace;
+      return t;
+    }
+    const glowTex = softCircle('rgba(255,242,214,.95)', 'rgba(233,199,126,.5)');
+    const bokehTex = softCircle('rgba(255,246,226,.9)', 'rgba(240,215,170,.42)');
+
+    /* огни на разных глубинах — размытые, как в объективе */
+    const bokeh = new THREE.Group();
+    scene.add(bokeh);
+    const NB = small ? 12 : 26;
+    for (let i = 0; i < NB; i++){
+      const s = new THREE.Sprite(new THREE.SpriteMaterial({map: bokehTex, transparent: true, depthWrite: false,
+        opacity: 0.09 + Math.random() * 0.16, blending: THREE.AdditiveBlending}));
+      const z = -1.5 - Math.random() * 11;
+      s.position.set((Math.random() - .5) * 8, (Math.random() - .5) * 6, z);
+      const sz = .25 + Math.random() * 1.5 + Math.abs(z) * 0.05;
+      s.scale.setScalar(sz);
+      s.userData = {base: s.position.y, speed: .1 + Math.random() * .25, phase: Math.random() * 6.28};
+      bokeh.add(s);
+    }
+
+    /* свет за статуэткой и общий ореол */
+    const halo = new THREE.Sprite(new THREE.SpriteMaterial({map: glowTex, transparent: true, opacity: .85,
+      depthWrite: false, blending: THREE.AdditiveBlending}));
+    halo.position.set(0, 0.1, -2.2); halo.scale.set(4.6, 4.6, 1);
+    scene.add(halo);
+
+    const rig = new THREE.Group();
+    scene.add(rig);
+    let ready = false;
+    new GLTFLoader().load(
+      'https://aum151-commits.github.io/sandow-assets/sandow-statue.glb',
+      gltf => {
+        const model = gltf.scene;
+        model.traverse(o => {
+          if (o.isMesh){
+            o.geometry.deleteAttribute('normal');
+            o.geometry.computeVertexNormals();
+            o.material = (o.name === 'podium') ? bronzeDark : bronze;
+          }
+        });
+        const bb = new THREE.Box3().setFromObject(model);
+        const size = new THREE.Vector3(); bb.getSize(size);
+        const center = new THREE.Vector3(); bb.getCenter(center);
+        const k = 3.75 / Math.max(size.y, 0.001);
+        model.scale.setScalar(k);
+        model.position.sub(center.multiplyScalar(k));
+        rig.add(model);
+        ready = true;
+        box.classList.add('ready');
+      },
+      undefined,
+      err => { console.error('статуэтка не загрузилась', err); fail(); }
+    );
+
+    const key = new THREE.SpotLight(0xfff6e8, 135, 40, Math.PI/5, 0.5, 1.1); key.position.set(3.2, 6, 6); scene.add(key);
+    const rim = new THREE.PointLight(0xffa94f, 55, 34); rim.position.set(-4, 1.6, -1.5); scene.add(rim);
+    const warm = new THREE.PointLight(0xffd9a0, 34, 30); warm.position.set(-2.2, 2.4, 4); scene.add(warm);
+    scene.add(new THREE.AmbientLight(0x8d7a5f, 1.6));
+
+    let mx = 0, my = 0, tmx = 0, tmy = 0;
+    window.addEventListener('pointermove', e => {
+      tmx = e.clientX / window.innerWidth * 2 - 1;
+      tmy = -(e.clientY / window.innerHeight * 2 - 1);
+    }, {passive:true});
+    window.addEventListener('resize', () => {
+      camera.aspect = W()/H(); camera.updateProjectionMatrix(); renderer.setSize(W(), H());
+    });
+
+    const clock = new THREE.Clock();
+    let t = 0, raf = 0, running = false;
+
+    function frame(){
+      raf = requestAnimationFrame(frame);
+      t += Math.min(clock.getDelta(), 0.05);
+      mx += (tmx - mx) * 0.045; my += (tmy - my) * 0.045;
+
+      if (ready){
+        const intro = Math.min(1, t / 1.2);
+        const ease = 1 - Math.pow(1 - intro, 3);
+        rig.scale.setScalar(0.001 + ease * 0.999);
+        /* крутится медленно и ровно, камера стоит — «попой в лицо» не бывает */
+        rig.rotation.y = -0.5 + t * 0.14 + mx * 0.18;
+        rig.rotation.x = 0.02 + my * 0.04;
+        rig.position.y = Math.sin(t * 0.5) * 0.03;
+      }
+      bokeh.children.forEach((s, i) => {
+        s.position.y = s.userData.base + Math.sin(t * s.userData.speed + s.userData.phase) * 0.12;
+        s.material.opacity = 0.07 + 0.1 * (0.5 + 0.5 * Math.sin(t * 0.4 + i));
+      });
+      /* камера стоит на месте: только лёгкий сдвиг от курсора, без наезда */
+      camera.position.x = mx * 0.3;
+      camera.position.y = 0.15 + my * 0.22;
+      camera.position.z = 6.05;
+      camera.lookAt(mx * 0.08, -0.05 + my * 0.06, 0);
+
+      renderer.render(scene, camera);
+      box.setAttribute('data-3d', ready ? 'ok' : 'loading');
+    }
+    function start(){ if(running) return; running = true; clock.getDelta(); frame(); }
+    function stop(){ if(!running) return; running = false; cancelAnimationFrame(raf); }
+    let visible = true;
+    document.addEventListener('visibilitychange', () => { (document.hidden || !visible) ? stop() : start(); });
+    new IntersectionObserver(es => {
+      es.forEach(e => { visible = e.isIntersecting; (visible && !document.hidden) ? start() : stop(); });
+    }, {threshold: 0.01}).observe(box);
+    start();
+  } catch(e){ fail(); }
+}
+</script>
+</body>
+</html>
