@@ -1,0 +1,286 @@
+/* ====================================================================
+   V47 — правки Ольги 26.10.2026: телефон, статуэтка, кнопки, тарифы.
+   Отдельный слой поверх V46: файлы V46 не тронуты, всё ниже снимается
+   удалением одной ссылки из index.html.
+   ВАЖНО про селекторы: статуэтку двигает правило `.v44-world #heroSculpture`
+   (id + два класса), текст — `.hero .hero-desc` и подобные. Здесь такие же
+   сильные селекторы, иначе правка молча не применяется.
+   ==================================================================== */
+
+/* ---------- 1. Вращение при «уменьшении движения» ----------
+   В V41 и V46 при включённом в системе «уменьшении движения» полотно
+   пряталось и показывалась статичная картинка — поэтому на телефоне Ольги
+   статуэтка стояла фотографией. Теперь полотно видно всегда, остановить
+   вращение можно кнопкой под фигурой. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-sculpture #heroModel,
+  .v44-world #heroSculpture #heroModel,
+  body #heroModel {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .hero-sculpture.webgl-hero #sandow-reference,
+  .v44-world #heroSculpture.webgl-hero #sandow-reference,
+  .hero-sculpture.auto-spinning #sandow-reference {
+    opacity: 0 !important;
+  }
+}
+
+/* ---------- 2. Кнопки на всех экранах: крупнее текст ---------- */
+.button,
+.hero-actions .button,
+.finale .button,
+.portal-arrival .button {
+  font-size: 13.5px !important;
+  font-weight: 720 !important;
+  letter-spacing: .025em !important;
+}
+.header-action { font-size: 12px !important; font-weight: 700 !important; }
+.tier-card-bottom > a,
+.tier-card .tier-card-bottom > a,
+.tier-card[data-tier="light"] .tier-card-bottom > a,
+.tier-card[data-tier="pro"] .tier-card-bottom > a,
+.tier-card[data-tier="legend"] .tier-card-bottom > a {
+  font-size: 13.5px !important;
+  font-weight: 720 !important;
+  letter-spacing: .02em !important;
+  min-height: 52px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #f4d126 !important;
+  color: #101820 !important;
+  border-color: #f4d126 !important;
+  box-shadow: 0 10px 26px rgba(244, 209, 38, .16) !important;
+}
+.tier-select { font-size: 12.5px !important; font-weight: 650 !important; }
+
+/* ---------- телефон ---------- */
+@media (max-width: 760px) {
+
+  /* --- первый экран --- */
+  .hero {
+    padding-top: 64px !important;
+    padding-bottom: 150px !important;
+  }
+  .hero .hero-copy { max-width: 100% !important; }
+  .hero h1 {
+    font-size: clamp(38px, 11.2vw, 52px) !important;
+    font-weight: 620 !important;
+    line-height: 1.0 !important;
+    letter-spacing: -.042em !important;
+    margin: 0 !important;
+  }
+  .hero h1 .hero-line,
+  .hero h1 em { letter-spacing: -.042em !important; }
+  .hero .hero-desc {
+    font-size: 15px !important;
+    line-height: 1.44 !important;
+    margin: 10px 0 0 !important;
+    max-width: 100% !important;
+    color: #cfdbe0 !important;
+  }
+  .hero-price { margin: 10px 0 0 !important; }
+  .hero-price strong { font-size: 40px !important; }
+  .hero-price small { font-size: 12px !important; letter-spacing: .06em !important; }
+  .hero-price-term b { font-size: 22px !important; }
+  .hero-price-term span { font-size: 10px !important; }
+  .hero-actions { margin-top: 12px !important; gap: 10px !important; }
+  /* вторая, бледная кнопка на телефоне только мешала — оставлена одна главная */
+  .hero-actions .button-ghost { display: none !important; }
+  .hero .button,
+  .hero-actions .button,
+  .hero .button-primary,
+  .finale .button,
+  .portal-arrival .button {
+    font-size: 15.5px !important;
+    font-weight: 750 !important;
+    padding: 18px 22px !important;
+    min-height: 58px !important;
+    gap: 10px !important;
+  }
+  .hero .button-primary,
+  .finale .button-primary { box-shadow: 0 14px 34px rgba(244, 209, 38, .3) !important; }
+
+  /* --- заголовки разделов: крупнее и плотнее --- */
+  .concept h2,
+  .v44-chapter h2,
+  .v44-proof h2,
+  .residency-head h2,
+  .economy h2,
+  .economy-left h2,
+  .finale h2,
+  .section h2 {
+    font-size: clamp(36px, 10.6vw, 50px) !important;
+    font-weight: 600 !important;
+    line-height: 1.02 !important;
+    letter-spacing: -.042em !important;
+  }
+  .section-head,
+  .micro,
+  .v44-kicker,
+  .v44-eyebrow {
+    font-size: 11.5px !important;
+    letter-spacing: .11em !important;
+  }
+
+  /* --- тарифы: слайдер вправо-влево, «Профи» по центру --- */
+  .tiers {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    grid-template-columns: none !important;
+    gap: 14px !important;
+    max-width: none !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-x: contain !important;
+    scrollbar-width: none !important;
+    margin: 0 -21px !important;
+    padding: 6px 21px 10px !important;
+    perspective: none !important;
+  }
+  .tiers::-webkit-scrollbar { display: none !important; }
+  .tiers .tier-card {
+    flex: 0 0 86% !important;
+    max-width: 360px !important;
+    min-width: 0 !important;
+    scroll-snap-align: center !important;
+    transform: none !important;
+  }
+  .tiers .tier-card[data-selected="true"],
+  .tiers .tier-card[data-selected="true"]:hover { transform: none !important; }
+
+  .v47-tiers-dots { display: flex !important; justify-content: center !important; gap: 9px !important; margin: 12px 0 0 !important; }
+  .v47-tiers-dots i {
+    width: 8px !important; height: 8px !important; border-radius: 50% !important;
+    background: rgba(232, 237, 239, .26) !important; transition: background .2s, transform .2s !important;
+  }
+  .v47-tiers-dots i.on { background: #f4d126 !important; transform: scale(1.3) !important; }
+  .v47-tiers-hint {
+    display: block !important; margin: 10px 0 0 !important; text-align: center !important;
+    font-family: "JetBrains Mono", ui-monospace, monospace !important;
+    font-size: 11px !important; letter-spacing: .14em !important; text-transform: uppercase !important;
+    color: rgba(232, 237, 239, .55) !important;
+  }
+  .tiers .tier-card-bottom > a,
+  .tier-card .tier-card-bottom > a,
+  .tier-card[data-tier="light"] .tier-card-bottom > a,
+  .tier-card[data-tier="pro"] .tier-card-bottom > a,
+  .tier-card[data-tier="legend"] .tier-card-bottom > a {
+    font-size: 15px !important; min-height: 56px !important; gap: 8px !important;
+  }
+
+  /* --- липкая кнопка внизу: крупнее и только после первого экрана --- */
+  .mobile-action {
+    padding: 10px 14px max(12px, env(safe-area-inset-bottom)) !important;
+    transform: translateY(115%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: transform .32s ease, opacity .32s ease !important;
+  }
+  .mobile-action.v47-shown {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+  .mobile-action a {
+    font-size: 15px !important; font-weight: 750 !important;
+    letter-spacing: .03em !important; padding: 17px 14px !important;
+  }
+
+  /* --- статуэтка: справа, во всю свободную высоту под кнопкой ---
+     Высоту считает v47.js от нижней границы кнопок до края экрана, чтобы
+     фигура была максимально крупной (это символ сайта) и не заходила
+     под кнопку. Здесь только подстраховка на случай, если скрипт не успел. */
+  .v44-world { --v47-statue-bottom: 12px; }
+  .v44-world.v47-cta-shown { --v47-statue-bottom: 84px; }
+  .v44-world #heroSculpture,
+  .hero-sculpture {
+    top: auto !important;
+    left: auto !important;
+    bottom: var(--v47-statue-bottom, 12px) !important;
+    right: -34px !important;
+    width: min(112vw, calc(var(--v47-statue-h, 300px) * 1.12)) !important;
+    height: var(--v47-statue-h, 300px) !important;
+    max-height: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: bottom .32s ease !important;
+  }
+  .v44-world #heroSculpture #heroModel,
+  .v44-world #heroSculpture #sandow-reference,
+  .hero-sculpture #heroModel {
+    /* небольшое увеличение: фигура заполняет отведённое место целиком,
+       растит она вверх, поэтому кнопку не задевает */
+    transform: scale(1.08) !important;
+    transform-origin: 50% 100% !important;
+  }
+  .v44-world #heroSculpture .sculpture-index,
+  .v44-world #heroSculpture .sculpture-hint,
+  .v44-world #heroSculpture .model-status,
+  .hero-sculpture .sculpture-index,
+  .hero-sculpture .sculpture-hint,
+  .hero-sculpture .model-status { display: none !important; }
+
+  .v44-world #heroSculpture .sculpture-toggle,
+  .hero-sculpture .sculpture-toggle {
+    bottom: -4px !important; right: 6px !important; left: auto !important;
+    transform: none !important; font-size: 10px !important; padding: 7px 10px !important;
+    opacity: .7 !important;
+  }
+}
+
+
+/* ---------- НИЗКИЕ ЭКРАНЫ: телефон с видимой адресной строкой ----------
+   Ольга 26.10.2026: «статуэтка не увеличилась». Причина: когда в браузере
+   видна адресная строка, видимая высота меньше, и фигура, размер которой
+   считается от неё, съёживалась до 180 px. Здесь освобождаем место под неё
+   за счёт отступов и вторичного текста — статуэтка главнее. */
+@media (max-width: 760px) and (max-height: 820px) {
+  .hero { padding-top: 52px !important; }
+  .hero h1 { font-size: clamp(34px, 10vw, 44px) !important; }
+  .hero .hero-desc { font-size: 14px !important; line-height: 1.4 !important; margin-top: 9px !important; }
+  .hero-price { margin-top: 9px !important; }
+  .hero-price strong { font-size: 35px !important; }
+  .hero-price-term b { font-size: 19px !important; }
+  .hero-actions { margin-top: 10px !important; }
+  .hero .button { min-height: 54px !important; padding: 15px 20px !important; }
+}
+@media (max-width: 760px) and (max-height: 730px) {
+  /* на совсем низком экране описание первого экрана уходит: тот же смысл
+     повторён в блоке «Своя практика» сразу под ним */
+  .hero .hero-desc { display: none !important; }
+  .hero { padding-top: 42px !important; }
+  .hero-price strong { font-size: 32px !important; }
+  .hero-actions { margin-top: 9px !important; }
+  .hero .button { min-height: 50px !important; padding: 13px 18px !important; }
+}
+
+/* узкие телефоны (360 и меньше): текст компактнее, чтобы фигура осталась
+   крупной — она должна занимать всё место под кнопкой */
+@media (max-width: 380px) {
+  .hero h1 { font-size: clamp(31px, 9.4vw, 38px) !important; }
+  .hero .hero-desc { font-size: 14px !important; line-height: 1.38 !important; margin-top: 10px !important; }
+  .hero-price { margin-top: 10px !important; }
+  .hero-price strong { font-size: 33px !important; }
+  .hero-price-term b { font-size: 19px !important; }
+  .hero-actions { margin-top: 11px !important; }
+  .hero .button { min-height: 52px !important; padding: 14px 18px !important; }
+}
+
+/* короткие экраны (iPhone SE и подобные): текст плотнее, кнопка ниже —
+   фигура по-прежнему занимает всё свободное место под ней */
+@media (max-width: 760px) and (max-height: 730px) {
+  .hero { padding-top: 56px !important; padding-bottom: 120px !important; }
+  .hero h1 { font-size: clamp(32px, 9.2vw, 41px) !important; }
+  .hero .hero-desc { font-size: 14px !important; line-height: 1.38 !important; margin-top: 9px !important; }
+  .hero-price { margin-top: 9px !important; }
+  .hero-price strong { font-size: 32px !important; }
+  .hero-price-term b { font-size: 18px !important; }
+  .hero-actions { margin-top: 10px !important; }
+  .hero .button { min-height: 50px !important; padding: 13px 18px !important; font-size: 15px !important; }
+}
