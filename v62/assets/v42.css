@@ -1,0 +1,74 @@
+/* V42 / SCULPTURAL CLUB — emergency release, spatial storytelling without corridors. */
+:root{--v42-silver:#dbe5e7;--v42-gold:#eed7a3}
+.hero{background:radial-gradient(ellipse 45% 66% at 74% 51%,#344049 0%,#1c2933 34%,#0e171d 68%,#080d12 100%)!important}
+.hero:after{opacity:.035!important}
+.hero:before{background:linear-gradient(90deg,rgba(7,12,17,.87),rgba(8,14,19,.16) 61%,transparent)!important}
+.hero-sculpture{right:clamp(-18px,-.7vw,0px)!important;top:9%!important;height:80%!important;width:min(46vw,680px)!important;overflow:visible!important}
+.hero-sculpture #sandow-reference{transform:scale(.94)!important;object-fit:contain!important;object-position:center!important;filter:drop-shadow(14px 24px 25px rgba(0,0,0,.42))!important}
+.hero-sculpture:not(.webgl-hero) #sandow-reference{transform:scale(.94)!important}
+.hero-sculpture #heroModel{transform:none!important;filter:none!important}
+.hero-copy{width:min(49%,670px)!important}
+.hero h1{font-size:clamp(41px,4.65vw,70px)!important;line-height:1.18!important;letter-spacing:-.048em!important;font-weight:300!important}
+.hero-price strong{font-size:clamp(38px,3.3vw,54px)!important}
+.hero h1 .hero-line,.hero h1 .hero-gentle{font-weight:300!important}
+.hero-desc{max-width:440px!important}
+/* Immersive island that grows into a cinematic world as the user scrolls. */
+.v42-journey{height:410svh!important;background:#c4cbce!important;}
+.v42-journey .editorial-sticky{background:radial-gradient(ellipse 55% 95% at 62% 52%,#87949a 0%,#b9c4c9 34%,#d8e0e2 67%,#e2e7e7 100%)!important; perspective:1400px}
+.v42-sky{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 57% 45%,rgba(255,255,255,.55),transparent 61%);filter:contrast(1.02)}
+.v42-orbit{position:absolute;left:54%;top:50%;border:1px solid rgba(243,248,248,.42);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%) rotate(-14deg);z-index:1}
+.v42-orbit-one{width:min(90vw,1250px);height:62vh;box-shadow:0 0 65px rgba(255,255,255,.20)}
+.v42-orbit-two{width:min(81vw,1070px);height:94vh;border-color:rgba(79,105,118,.18);transform:translate(-50%,-50%) rotate(22deg)}
+.v42-lens{position:absolute;z-index:2;left:58%;top:50%;width:min(60vw,880px);height:min(76svh,820px);transform:translate(calc(-50% + var(--lens-move-x,0px)),calc(-50% + var(--lens-move-y,0px))) rotateY(var(--lens-yaw,-10deg)) rotateZ(var(--lens-roll,-4deg)) scale(var(--lens-scale,.98));transform-origin:center;isolation:isolate;filter:drop-shadow(30px 40px 40px rgba(19,35,43,.28));will-change:transform}
+.v42-lens:before{content:"";position:absolute;inset:-1.8%;border:1px solid rgba(255,255,255,.78);border-radius:var(--lens-radius,44% 48% 38% 42% / 45% 43% 53% 51%);pointer-events:none;z-index:4}
+.v42-lens-rim{position:absolute;inset:-5%;border:1px solid rgba(65,88,98,.27);border-radius:var(--lens-radius,44% 48% 38% 42% / 45% 43% 53% 51%);box-shadow:inset 0 0 25px rgba(255,255,255,.12),0 0 75px rgba(255,255,255,.44);z-index:5;pointer-events:none}
+.v42-journey .editorial-media{position:absolute!important;inset:0!important;overflow:hidden!important;border-radius:var(--lens-radius,44% 48% 38% 42% / 45% 43% 53% 51%);background:#1a292e!important;box-shadow:inset 0 0 60px rgba(5,13,18,.34)}
+.v42-journey .editorial-frame{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;filter:brightness(.86) saturate(.89) contrast(1.04)!important;transform-origin:center!important}
+.v42-journey .editorial-shade{background:linear-gradient(90deg,rgba(32,49,59,.15),transparent 58%),linear-gradient(0deg,rgba(10,22,28,.22),transparent 38%)!important;z-index:3!important;pointer-events:none}
+.v42-journey .editorial-scenes{z-index:7!important;color:#0c1920}
+.v42-journey .editorial-scene{padding:100px clamp(26px,7vw,118px) 100px!important;width:100%;max-width:100%!important;align-items:flex-start;justify-content:center;text-shadow:none!important}
+.v42-journey .editorial-scene h2{font-size:clamp(42px,4.5vw,67px)!important;font-weight:300!important;color:#101c22!important;line-height:1.17!important;letter-spacing:-.056em!important;max-width:420px!important;text-shadow:0 2px 25px rgba(233,239,240,.38)!important}
+.v42-journey .editorial-scene h2 em{font-weight:300!important;color:#41575f!important}
+.v42-journey .editorial-scene p{max-width:340px!important;color:#354b53!important;font-size:clamp(14px,1.12vw,17px)!important;font-weight:350!important;text-shadow:none!important}
+.v42-journey .editorial-tag{color:#425861!important;font-size:10px!important;letter-spacing:.19em!important}
+.v42-journey .editorial-tag span{color:#8e6648!important}
+.v42-journey .editorial-rail{z-index:8!important;color:#314750!important}
+.v42-journey .editorial-rail span{color:#30474f!important}
+.v42-journey .editorial-rail-track{background:rgba(20,39,49,.21)!important}
+.v42-journey .editorial-rail-track i{background:#8e694f!important}
+.v42-journey .editorial-scene-final{background:linear-gradient(90deg,rgba(213,222,225,.86),rgba(202,214,217,.30) 53%,transparent 85%)!important}
+.v42-journey .editorial-scene-final .editorial-cta{background:#111e25!important;border-color:#111e25!important;color:#faf6e9!important;box-shadow:0 8px 32px rgba(12,27,36,.17)!important}
+.v42-spark{position:absolute;width:3px;height:3px;border-radius:50%;background:#f8fbfc;box-shadow:0 0 15px 4px rgba(255,255,255,.52);opacity:.65;animation:v42float 9s ease-in-out infinite alternate}
+.v42-spark.s1{left:16%;top:24%}.v42-spark.s2{left:84%;top:20%;animation-delay:-5s}.v42-spark.s3{left:15%;top:78%;animation-delay:-2s}.v42-spark.s4{left:88%;top:82%;animation-delay:-3s}
+@keyframes v42float{from{transform:translate3d(0,-22px,0)}to{transform:translate3d(14px,34px,0)}}
+/* After the spatial chapter return to the exact club photographs, but with quieter editorial treatment. */
+.editorial-gallery-main img,.editorial-gallery-small img{transition:transform 1.2s cubic-bezier(.2,.7,.2,1),filter .8s ease!important}
+.editorial-gallery figure:hover img{transform:scale(1.085)!important;filter:brightness(1.09) saturate(1.05)!important}
+@media(max-width:760px){
+ .hero{min-height:960px!important;padding:102px 21px 79px!important}
+ .hero-copy{width:100%!important}
+ .hero h1{font-size:clamp(38px,9.15vw,51px)!important;margin:18px 0!important}
+ .hero-sculpture{top:510px!important;right:-3%!important;width:93vw!important;height:380px!important}
+ .hero-sculpture #sandow-reference,.hero-sculpture:not(.webgl-hero) #sandow-reference{transform:scale(.93)!important}
+ .v42-journey{height:360svh!important}
+ .v42-journey .editorial-sticky{background:radial-gradient(ellipse at 55% 50%,#a4b2b8,#dce4e5)!important}
+ .v42-lens{width:112vw;height:54svh;left:61%;top:36%;transform:translate(calc(-50% + var(--lens-move-x,0px)),calc(-50% + var(--lens-move-y,0px))) rotateY(var(--lens-yaw,-8deg)) rotateZ(var(--lens-roll,-3deg)) scale(var(--lens-scale,.98))}
+ .v42-journey .editorial-scene{justify-content:flex-end!important;padding:50px 23px 145px!important;z-index:5}
+ .v42-journey .editorial-scene h2{font-size:clamp(37px,8.2vw,49px)!important;max-width:100%!important;margin-bottom:13px!important}
+ .v42-journey .editorial-scene p{font-size:13px!important;line-height:1.6!important;max-width:95%!important}
+ .v42-journey .editorial-tag{font-size:9px!important;margin-bottom:13px!important}
+ .v42-journey .editorial-rail{bottom:91px!important;color:#16232c!important}
+ .v42-journey .editorial-scene-final{background:linear-gradient(0deg,rgba(226,233,234,.84),transparent 72%)!important}
+ .v42-orbit{width:125vw!important;height:72svh!important}
+}
+@media(prefers-reduced-motion:reduce){.v42-spark{animation:none}.v42-lens{transform:translate(-50%,-50%)}}
+
+/* Final clarity pass: the lens never runs through the copy at middle scroll positions. */
+@media(min-width:761px){
+.v42-lens{left:64%!important;width:min(55vw,810px)!important}
+.v42-orbit{left:61%!important}
+.v42-journey .editorial-scene h2{max-width:350px!important;font-size:clamp(40px,4.1vw,61px)!important}
+.v42-journey .editorial-scene p{max-width:340px!important}
+.v42-journey .editorial-scene-final{background:linear-gradient(90deg,rgba(225,233,234,.90),rgba(225,233,234,.50) 37%,transparent 76%)!important}
+}
+.v42-journey .editorial-scene{transition:opacity .22s ease-out!important}
