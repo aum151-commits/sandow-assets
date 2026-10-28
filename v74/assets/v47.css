@@ -1,0 +1,408 @@
+/* ====================================================================
+   V47 — правки Ольги 26.10.2026 по мобильной версии, кнопкам и тарифам.
+   Отдельный слой поверх V46: файлы V46 не переписаны, всё ниже снимается
+   удалением одной ссылки из index.html.
+   ВАЖНО про селекторы: статуэтку двигает правило `.v44-world #heroSculpture`
+   (id + два класса), текст — `.hero .hero-desc`. Здесь такие же сильные
+   селекторы, иначе правка молча не применяется.
+   ВАЖНО про телефон: у iPhone и у браузера внутри Телеграма видимая высота
+   меньше «высоты окна». Поэтому место и размер фигуры задаёт скрипт v47.js
+   по РЕАЛЬНО видимой области, а фигура едет вместе со страницей — иначе её
+   срезает нижняя панель браузера.
+   ==================================================================== */
+
+/* ---------- 1. Вращение при «уменьшении движения» ----------
+   В V41 и V46 при включённом в системе «уменьшении движения» полотно
+   пряталось и показывалась статичная картинка — поэтому на телефоне Ольги
+   статуэтка стояла фотографией. Теперь полотно видно всегда, остановить
+   вращение можно кнопкой под фигурой. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-sculpture #heroModel,
+  .v44-world #heroSculpture #heroModel,
+  body #heroModel {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .hero-sculpture.webgl-hero #sandow-reference,
+  .v44-world #heroSculpture.webgl-hero #sandow-reference,
+  .hero-sculpture.auto-spinning #sandow-reference {
+    opacity: 0 !important;
+  }
+}
+
+/* ---------- 2. Кнопки: крупнее текст на всех экранах ---------- */
+.button,
+.hero-actions .button,
+.finale .button,
+.portal-arrival .button {
+  font-size: 13.5px !important;
+  font-weight: 720 !important;
+  letter-spacing: .025em !important;
+}
+.header-action { font-size: 12px !important; font-weight: 700 !important; }
+.tier-card-bottom > a,
+.tier-card .tier-card-bottom > a,
+.tier-card[data-tier="light"] .tier-card-bottom > a,
+.tier-card[data-tier="pro"] .tier-card-bottom > a,
+.tier-card[data-tier="legend"] .tier-card-bottom > a {
+  font-size: 13.5px !important;
+  font-weight: 720 !important;
+  letter-spacing: .02em !important;
+  min-height: 52px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #f4d126 !important;
+  color: #101820 !important;
+  border-color: #f4d126 !important;
+  box-shadow: 0 10px 26px rgba(244, 209, 38, .16) !important;
+}
+.tier-select { font-size: 12.5px !important; font-weight: 650 !important; }
+
+/* ---------- телефон ---------- */
+@media (max-width: 760px), ((pointer: coarse) and (max-width: 1100px)) {
+
+  /* --- первый экран: сверху столько же воздуха, сколько в V46 (иначе
+     заголовок лезет под шапку), высота ровно по видимому экрану
+     (иначе внизу остаётся пустая полоса) --- */
+  .hero {
+    min-height: 100svh !important;
+    padding-top: 104px !important;
+    padding-bottom: 72px !important;
+  }
+  .hero .hero-copy { max-width: 100% !important; }
+  .hero h1 {
+    font-size: clamp(38px, 11.2vw, 52px) !important;
+    font-weight: 620 !important;
+    line-height: 1.0 !important;
+    letter-spacing: -.042em !important;
+    margin: 0 !important;
+  }
+  .hero h1 .hero-line,
+  .hero h1 em { letter-spacing: -.042em !important; }
+  .hero .hero-desc {
+    /* Ольга 26.10.2026: фигура — символ сайта, ей нужно место. На телефоне
+       абзац под заголовком скрыт: тот же смысл дословно повторён в блоке
+       «Своя практика» сразу под первым экраном. Вернуть — убрать одну строку. */
+    display: none !important;
+  }
+
+  /* --- цена: «ЗА ГОД» должна стоять рядом с суммой. Раньше строка была
+     ровно во всю ширину и «ЗА ГОД» уезжала вниз. Теперь на телефоне у
+     подписи справа убираем длинную вторую строку (она есть в карточках
+     тарифов) и держим пару в одной строке без переноса. --- */
+  .hero-price {
+    margin: 12px 0 0 !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: baseline !important;
+    column-gap: 12px !important;
+  }
+  .hero-price > div:first-child { min-width: 0 !important; }
+  .hero-price strong { font-size: 36px !important; white-space: nowrap !important; }
+  .hero-price small { font-size: 11px !important; letter-spacing: .05em !important; }
+  .hero-price-term { min-width: 0 !important; }
+  .hero-price-term b { font-size: 19px !important; white-space: nowrap !important; }
+  .hero-price-term span { display: none !important; }
+
+  .hero-actions { margin-top: 14px !important; gap: 10px !important; }
+  /* вторая, бледная кнопка на телефоне только мешала */
+  .hero-actions .button-ghost { display: none !important; }
+  .hero .button,
+  .hero-actions .button,
+  .hero .button-primary,
+  .finale .button,
+  .portal-arrival .button {
+    font-size: 15.5px !important;
+    font-weight: 750 !important;
+    padding: 18px 22px !important;
+    min-height: 58px !important;
+    gap: 10px !important;
+  }
+  .hero .button-primary,
+  .finale .button-primary { box-shadow: 0 14px 34px rgba(244, 209, 38, .3) !important; }
+
+  /* --- заголовки разделов: крупнее и плотнее --- */
+  .concept h2,
+  .v44-chapter h2,
+  .v44-proof h2,
+  .residency-head h2,
+  .economy h2,
+  .economy-left h2,
+  .finale h2,
+  .section h2 {
+    font-size: clamp(36px, 10.6vw, 50px) !important;
+    font-weight: 600 !important;
+    line-height: 1.02 !important;
+    letter-spacing: -.042em !important;
+  }
+  .section-head,
+  .micro,
+  .v44-kicker,
+  .v44-eyebrow {
+    font-size: 11.5px !important;
+    letter-spacing: .11em !important;
+  }
+
+  /* --- тарифы: слайдер вправо-влево, «Профи» по центру --- */
+  .tiers {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    grid-template-columns: none !important;
+    gap: 14px !important;
+    max-width: none !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-x: contain !important;
+    scrollbar-width: none !important;
+    margin: 0 -21px !important;
+    padding: 6px 21px 10px !important;
+    perspective: none !important;
+  }
+  .tiers::-webkit-scrollbar { display: none !important; }
+  .tiers .tier-card {
+    flex: 0 0 86% !important;
+    max-width: 360px !important;
+    min-width: 0 !important;
+    scroll-snap-align: center !important;
+    transform: none !important;
+  }
+  .tiers .tier-card[data-selected="true"],
+  .tiers .tier-card[data-selected="true"]:hover { transform: none !important; }
+
+  .v47-tiers-dots { display: flex !important; justify-content: center !important; gap: 9px !important; margin: 12px 0 0 !important; }
+  .v47-tiers-dots i {
+    width: 8px !important; height: 8px !important; border-radius: 50% !important;
+    background: rgba(232, 237, 239, .26) !important; transition: background .2s, transform .2s !important;
+  }
+  .v47-tiers-dots i.on { background: #f4d126 !important; transform: scale(1.3) !important; }
+  .v47-tiers-hint {
+    display: block !important; margin: 10px 0 0 !important; text-align: center !important;
+    font-family: "JetBrains Mono", ui-monospace, monospace !important;
+    font-size: 11px !important; letter-spacing: .14em !important; text-transform: uppercase !important;
+    color: rgba(232, 237, 239, .55) !important;
+  }
+  .tiers .tier-card-bottom > a,
+  .tier-card .tier-card-bottom > a,
+  .tier-card[data-tier="light"] .tier-card-bottom > a,
+  .tier-card[data-tier="pro"] .tier-card-bottom > a,
+  .tier-card[data-tier="legend"] .tier-card-bottom > a {
+    font-size: 15px !important; min-height: 56px !important; gap: 8px !important;
+  }
+
+  /* --- карточка тарифа должна влезать в один экран телефона, как на
+     Богородицке: поджимаем отступы и второстепенные подписи.
+     Селекторы нарочно длинные (`!important` уже стоит в V46, иначе не
+     перебить) — короткий `.tier-fact` проигрывает по весу. --- */
+  .tiers .tier-card,
+  .tiers .tier-card[data-tier] {
+    padding: 14px !important;
+    min-height: 0 !important;
+    height: auto !important;
+  }
+  .tiers .tier-card .tier-card-top { margin: 0 0 6px !important; }
+  .tiers .tier-card .tier-card-number,
+  .tiers .tier-card .tier-card-tag { font-size: 9px !important; letter-spacing: .09em !important; }
+  .tiers .tier-card h3 {
+    font-size: clamp(25px, 7.6vw, 30px) !important;
+    line-height: 1 !important;
+    margin: 1px 0 0 !important;
+  }
+  .tiers .tier-card .tier-card-lead {
+    font-size: 12.5px !important;
+    line-height: 1.3 !important;
+    margin: 6px 0 0 !important;
+    min-height: 0 !important;
+  }
+  .tiers .tier-card .tier-select {
+    min-height: 40px !important;
+    margin: 8px 0 0 !important;
+    padding: 9px 14px !important;
+    font-size: 11.5px !important;
+  }
+  .tiers .tier-card .tier-benefits { gap: 6px !important; margin: 9px 0 8px !important; }
+  .tiers .tier-card .tier-fact { padding: 6px 8px !important; gap: 7px !important; }
+  .tiers .tier-card .tier-fact-mark { font-size: 10px !important; }
+  .tiers .tier-card .tier-fact-body {
+    font-size: 12px !important;
+    line-height: 1.26 !important;
+    gap: 1px !important;
+  }
+  .tiers .tier-card .tier-fact-body small,
+  .tiers .tier-card .tier-fact-body span { font-size: 10.5px !important; line-height: 1.24 !important; }
+  .tiers .tier-card .tier-card-bottom {
+    margin-top: 8px !important;
+    padding-top: 8px !important;
+    gap: 7px !important;
+  }
+  .tiers .tier-card .tier-card-price strong { font-size: 24px !important; }
+  .tiers .tier-card .tier-card-price span { font-size: 9.5px !important; }
+  .tiers .tier-card .tier-card-bottom > a { min-height: 46px !important; font-size: 13.5px !important; }
+  .tiers .tier-card .tier-inline-details { margin: 10px 0 4px !important; padding: 12px 12px 8px !important; }
+
+  /* --- липкая кнопка внизу: крупнее и только после первого экрана --- */
+  .mobile-action {
+    padding: 10px 14px max(12px, env(safe-area-inset-bottom)) !important;
+    transform: translateY(115%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: transform .32s ease, opacity .32s ease !important;
+  }
+  .mobile-action.v47-shown {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+  .mobile-action a {
+    font-size: 15px !important; font-weight: 750 !important;
+    letter-spacing: .03em !important; padding: 17px 14px !important;
+    /* жёлтая кнопка с тёмным текстом. Раньше цвет текста наследовался от
+       Тильды и на телефоне получалось белое на светло-жёлтом — нечитаемо */
+    background: #f4d126 !important;
+    color: #0e1116 !important;
+    border-color: #f4d126 !important;
+  }
+  .mobile-action a span,
+  .mobile-action a b,
+  .mobile-action a:visited { color: #0e1116 !important; }
+  .mobile-action a::before,
+  .mobile-action a::after { color: #0e1116 !important; }
+  /* если фигура внизу не помещается между кнопкой и подвалом — прячем её,
+     чтобы она не наезжала на текст */
+  .v44-world.v47-statue-hidden #heroSculpture { opacity: 0 !important; }
+
+  /* --- статуэтка: место и размер задаёт v47.js (сразу под кнопкой, на всю
+     оставшуюся видимую высоту). Двигается через top, а не transform:
+     составной слой с полотном 3D на iPhone Safari иногда пропадает. --- */
+  .v44-world #heroSculpture,
+  .hero-sculpture {
+    top: var(--v47-statue-top, 480px) !important;
+    bottom: auto !important;
+    left: var(--v47-statue-left, auto) !important;
+    right: var(--v47-statue-right, 0) !important;
+    width: var(--v47-statue-w, min(100vw, calc(var(--v47-statue-h, 300px) * 1.12))) !important;
+    height: var(--v47-statue-h, 300px) !important;
+    max-height: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+  .v44-world #heroSculpture #heroModel,
+  .v44-world #heroSculpture #sandow-reference,
+  .hero-sculpture #heroModel {
+    transform: scale(1.08) !important;
+    transform-origin: 50% 100% !important;
+  }
+  .v44-world #heroSculpture .sculpture-index,
+  .v44-world #heroSculpture .sculpture-hint,
+  .v44-world #heroSculpture .model-status,
+  .hero-sculpture .sculpture-index,
+  .hero-sculpture .sculpture-hint,
+  .hero-sculpture .model-status { display: none !important; }
+
+  .v44-world #heroSculpture .sculpture-toggle,
+  .hero-sculpture .sculpture-toggle {
+    bottom: -4px !important; right: 40px !important; left: auto !important;
+    transform: none !important; font-size: 10px !important; padding: 7px 10px !important;
+    opacity: .7 !important;
+  }
+
+  /* --- вторая площадка для фигуры в финальном блоке: Ольга попросила
+     поставить крутящуюся фигуру в пустое место между кнопкой «Стать
+     резидентом» и концом блока. Площадка прижата к низу блока, фигура
+     встаёт ровно в эту пустоту и ни на что не наезжает. --- */
+  /* Финальный блок на телефоне делаем по содержимому: он был высотой в целый
+     экран (100vh), а на iPhone видимая часть меньше — в конце оставалась
+     большая чёрная пустота. Теперь блок = заголовок, текст, кнопка и фигура. */
+  .finale {
+    min-height: 0 !important; height: auto !important;
+    display: block !important;
+    padding: 62px 22px 6px !important;
+    /* overflow:hidden вернули: без него круг-орбита шириной 130vw вылезал
+       за экран на 117 px, и Safari на телефоне зумил страницу — отсюда
+       «короткая область сайта» и застывшая адресная строка */
+    overflow: hidden !important;
+  }
+  /* подвал: убираем большой нижний отступ, из-за него под текстом оставалась
+     чёрная полоса в треть экрана */
+  footer {
+    padding: 26px 22px calc(20px + env(safe-area-inset-bottom)) !important;
+    gap: 12px !important;
+  }
+  .finale .finale-content { position: relative !important; z-index: 2 !important; width: 100% !important; }
+  .v47-statue-slot {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    height: var(--v47-slot-h, 240px) !important;
+    margin: 4px 0 0 !important;
+    pointer-events: none !important;
+    z-index: 6 !important;
+  }
+  /* фигура, перенесённая внутрь блока: обычный элемент страницы, а не слой */
+  .v47-statue-slot #heroSculpture,
+  #heroSculpture.v47-in-slot {
+    position: static !important;
+    top: auto !important; left: auto !important; right: auto !important; bottom: auto !important;
+    width: 100% !important; height: 100% !important;
+    margin: 0 !important; opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* низкие экраны (телефон с адресной строкой и подобные): заголовок ниже,
+   описание убираем — фигура должна быть крупной и целиком в экране */@media (max-width: 760px) and (max-height: 760px), ((pointer: coarse) and (max-width: 1100px) and (max-height: 760px)) {
+  .hero { padding-top: 84px !important; padding-bottom: 40px !important; }
+  .hero h1 { font-size: clamp(31px, 9.2vw, 42px) !important; }
+  .hero-price strong { font-size: 32px !important; }
+  .hero-price-term b { font-size: 17px !important; }
+  .hero-actions { margin-top: 11px !important; }
+  .hero .button { min-height: 52px !important; padding: 14px 20px !important; }
+}
+
+/* --- страховка: если липкие сцены середины не работают (бывает на iPhone,
+   когда тело страницы становится прокручиваемым), показываем четыре главы
+   обычным потоком. Пустоты между «Клиенты — твои» и тарифами быть не должно. --- */
+html.v47-no-sticky .v44-journey { height: auto !important; min-height: 0 !important; }
+html.v47-no-sticky .v44-journey-sticky {
+  position: static !important; height: auto !important;
+  overflow: visible !important; padding: 40px 22px !important;
+}
+html.v47-no-sticky .v44-chapter {
+  position: static !important; opacity: 1 !important; transform: none !important;
+  margin: 0 0 34px !important; max-width: none !important;
+}
+
+/* --- на последнем экране (фигура стоит в блоке финала) декоративный слой мира
+   прячем: его фотографии, линии и мелкие подписи («ЗАЛ / 01») вылезали поверх
+   финального блока и подвала — Ольга называла это «кодировкой в конце». --- */
+html.v47-at-finale .v44-world { z-index: 7 !important; pointer-events: none !important; }
+/* в конце страницы оставляем в слое только фигуру: украшения прячем по одному,
+   иначе они лезут поверх финального блока и подвала */
+html.v47-at-finale .v44-world > *:not(#heroSculpture) { opacity: 0 !important; }
+
+/* --- украшения (.v44-atmosphere, .v44-plane, .v44-grid, .v44-stream,
+   .v44-architecture и прочие) шире экрана: раньше их обрезало глобальное
+   правило у html, теперь — сам слой, в котором они лежат. Так страница
+   остаётся ровно по ширине экрана, и Safari не зумит вёрстку. --- */
+.v44-world { overflow: hidden !important; }
+
+/* --- запасная картинка статуэтки (когда 3D не запустилось) должна совпадать
+   с рамкой фигуры: раньше она была шире экрана на 30 px и выглядела обрезанной
+   справа. Ставим последним правилом и с пометкой «важно», чтобы перебить
+   оформление самого сайта. --- */
+.v44-world #heroSculpture #sandow-reference,
+#heroSculpture #sandow-reference {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+  object-fit: contain !important;
+  object-position: 50% 100% !important;
+}
