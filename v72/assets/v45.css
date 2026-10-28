@@ -1,0 +1,81 @@
+/* V45 — three precise corrections to the V44 continuous scene. */
+/* Sandow artwork: actual transparent pixels, not a dark rectangle with a visual mask. */
+.v44-world #heroSculpture #sandow-reference{
+  mix-blend-mode:normal!important;
+  mask-image:none!important;-webkit-mask-image:none!important;
+  filter:drop-shadow(0 24px 34px rgba(0,0,0,.35))!important;
+  object-fit:contain!important;
+  transform:none!important;
+  image-rendering:auto!important;
+}
+/* Three genuinely different spaces: gym overview, cardio and functional training. */
+.v44-photo-panel img{
+  filter:grayscale(.12) saturate(.96) brightness(.93) contrast(1.05)!important;
+  opacity:.96!important;
+  object-position:center center!important;
+}
+.v44-photo-panel{background:rgba(16,37,47,.38)!important;border-color:rgba(202,226,232,.26)!important}
+.v44-p1 img{object-position:55% 52%!important}
+.v44-p2 img{object-position:28% 50%!important}
+.v44-p3 img{object-position:55% 52%!important}
+.v44-mark{font-size:9px!important;color:rgba(239,245,247,.84)!important;letter-spacing:.17em!important}
+/* Tariff details are inside the selected card. No default Light and no duplicate below. */
+#tierDetails,.tier-detail-panel{display:none!important}
+.tiers .tier-card{
+  cursor:pointer!important;
+  transition:transform .45s cubic-bezier(.2,.75,.2,1),border-color .35s ease,box-shadow .45s ease,background .4s ease!important;
+  transform:translate3d(0,0,0) scale(1)!important;
+  overflow:hidden!important;
+}
+.tiers .tier-card:hover:not([data-selected="true"]),
+.tiers .tier-card:focus-within:not([data-selected="true"]){
+  border-color:rgba(221,236,243,.54)!important;
+  box-shadow:0 18px 48px rgba(0,0,0,.28)!important;
+  transform:translate3d(0,-3px,0)!important;
+}
+.tiers .tier-card[data-selected="true"],
+.tiers .tier-card[data-selected="true"]:hover{
+  border-color:#f4d126!important;
+  background:rgba(22,40,49,.91)!important;
+  box-shadow:0 26px 74px rgba(0,0,0,.38),0 0 0 1px rgba(244,209,38,.19)!important;
+  transform:translate3d(0,-10px,0) scale(1.012)!important;
+  z-index:3!important;
+}
+.tiers .tier-card h3,.tiers .tier-card-featured h3{color:#edf3f3!important}
+.tier-select{
+  border-radius:5px!important;
+  font-weight:500!important;
+  font-size:12px!important;
+  padding:14px 14px!important;
+  letter-spacing:.005em!important;
+}
+.tier-select span{font-size:18px;line-height:1;display:inline-block;transition:transform .3s ease}
+.tier-select[aria-expanded="true"]{background:#f4d126!important;color:#19232a!important;border-color:#f4d126!important}
+.tier-select[aria-expanded="true"] span{transform:rotate(45deg)}
+.tier-inline-details[hidden]{display:none!important}
+.tier-inline-details{
+  display:block;
+  margin:13px 0 20px;
+  padding:22px 20px 18px;
+  border:1px solid rgba(224,232,235,.18);
+  border-radius:6px;
+  background:rgba(8,19,27,.55);
+  animation:v45-open .38s cubic-bezier(.23,.78,.25,1) both;
+}
+@keyframes v45-open{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+.tier-inline-details h4{font-size:15px!important;line-height:1.4!important;font-weight:550!important;margin:0 0 12px!important;letter-spacing:-.025em;color:#fff}
+.tier-inline-details ul{list-style:none;margin:0!important;padding:0!important}
+.tier-inline-details li{font-size:12.5px;line-height:1.55;color:#d0dfe3;display:flex;gap:11px;padding:10px 0;border-top:1px solid rgba(226,238,240,.10)}
+.tier-inline-details li:before{content:'✓';flex:none;color:#f4d126;font-weight:600}
+.tier-card:focus-visible{outline:2px solid #f4d126;outline-offset:3px}
+.tiers .tier-card[data-selected="true"] .tier-card-bottom>a{background:#f4d126!important;color:#121a20!important}
+@media(max-width:860px){
+ .tiers .tier-card[data-selected="true"],.tiers .tier-card[data-selected="true"]:hover{transform:translate3d(0,-4px,0) scale(1)!important}
+ .tier-inline-details{margin:15px 0 18px;padding:20px 17px 14px}
+ .tier-inline-details li{font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){.tier-inline-details{animation:none!important}.tiers .tier-card{transition:none!important}}
+
+/* Expanded specifications replace the brief points in the same card. */
+.tiers .tier-card[data-selected="true"] .tier-benefits{display:none!important}
+.tier-select[aria-expanded="true"] span{transform:none!important}
